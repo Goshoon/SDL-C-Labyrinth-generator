@@ -1,15 +1,16 @@
 #pragma once
+#include "mazeGenerator.h"
 #include "screen.h"
-	class sceneExample : public Screen
-	{
-	public:
-		sceneExample();
-		~sceneExample();
 
-		void Update() override;
-		void Render() override;
+class sceneExample : public Screen
+{
+public:
+	sceneExample();
+	~sceneExample();
 
-	private:
-		bool ventanaEjemplo;
-		SDL_Texture* gorp;
-	};
+	MazeGenerator* maze = new MazeGenerator();
+	
+	void Update() override;
+	void Render() override;
+private:
+};

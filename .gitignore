@@ -1,5 +1,7 @@
 # Ignorar archivos .o
 *.o
+*.exe
+*.a
 
 # Ignorar folder
 /Dependencies/

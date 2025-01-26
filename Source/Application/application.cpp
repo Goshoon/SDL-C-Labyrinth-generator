@@ -26,6 +26,7 @@ Application::Application()
 	);
 	
 	SDL_SetWindowMinimumSize(window, 800, 600);
+	SDL_RenderSetScale(renderer, 2.0, 2.0);
 
 	done = false;
 	mbLeft = false;
@@ -45,7 +46,7 @@ Application::~Application()
 
 void Application::Display()
 {
-	SDL_RenderClear( renderer );	
+	SDL_RenderClear( renderer );
 }
 
 void Application::DrawEverything()
@@ -136,7 +137,6 @@ void Application::RenderImage( SDL_Texture* image, int x, int y )
 void Application::RenderImage( SDL_Texture* image, int x, int y, int w, int h )
 {
 	SDL_Rect dst = { x, y, w, h };
-	SDL_RenderCopy(renderer, image, NULL, &dst);
 }
 
 void Application::RenderText(const char* toRenderText)
