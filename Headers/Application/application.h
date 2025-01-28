@@ -24,12 +24,12 @@ public:
 
 	std::unordered_map<std::string, SDL_Texture*> images;
 
-	bool done = false;
-	bool mbLeft = false;
-	bool mbRight = false;
-	bool space = false;
 	int mouseX = 0;
 	int mouseY = 0;
+	bool done = false;
+	bool space = false;
+	bool mbLeft = false;
+	bool mbRight = false;
 
 	void Display();
 	void DrawEverything();

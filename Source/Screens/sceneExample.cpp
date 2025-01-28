@@ -20,12 +20,12 @@ sceneExample::~sceneExample()
 
 void sceneExample::Update()
 {
-    std::cout << app->space << " : " << xoffset << " : " << yoffset << "\n";
-    if (app->space)
+    if (app->mbLeft)
     {
         float multiplier = 0.05f;
-        previousMouseX = lerp(previousMouseX, app->mouseX, multiplier);
-        previousMouseY = lerp(previousMouseY, app->mouseY, multiplier);
+        float speed = 0.1f;
+        previousMouseX = lerp(previousMouseX, app->mouseX, speed);
+        previousMouseY = lerp(previousMouseY, app->mouseY, speed);
         xoffset += (app->mouseX - previousMouseX) * multiplier;
         yoffset += (app->mouseY - previousMouseY) * multiplier;
     }
@@ -34,6 +34,10 @@ void sceneExample::Update()
         previousMouseX = app->mouseX;
         previousMouseY = app->mouseY;
     }
+    
+    ImGui::Begin("meow");
+    ImGui::Text("hola");
+    ImGui::End();
 }
 
 void sceneExample::Render()
@@ -45,31 +49,29 @@ void sceneExample::Render()
         	short outlineSize = 2;
         	Cell* cell = &maze->cellMatrix[i][j];
         	SDL_Rect* cellArea = &cell->rect;
-        	SDL_Color color = { 0, 0, 0, 255 };
+        	SDL_Color color = { 0, 0, 0, 255 }; // Color defecto (negro)
         	SDL_Color outlineColor = { 0, 0, 0, 255 };
 
-        	if (maze->cellMatrix[i][j].visited)
+            int cellX = cellArea->x + xoffset;
+            int cellY = cellArea->y + yoffset;
+            int cellW = cellArea->w;
+            int cellH = cellArea->h;
+
+        	if (maze->cellMatrix[i][j].visited) // Revisar si se itero por esta celda
         		color = { 255, 255, 255, 255 };
 
+            // Dibujar celdas
             app->DrawRectangle(cellArea->x+xoffset, cellArea->y+yoffset, cellArea->w, cellArea->h, color);
 
-            // Draw Walls
-            if (!cell->upOpen) // Top wall
-            {
-                app->DrawRectangle(cellArea->x+xoffset, cellArea->y+yoffset, cellArea->w, outlineSize, outlineColor);
-            }
-            if (!cell->downOpen) // Bottom wall
-            {
-                app->DrawRectangle(cellArea->x+xoffset, cellArea->y + cellArea->h - outlineSize + yoffset, cellArea->w, outlineSize, outlineColor);
-            }
-            if (!cell->leftOpen) // Left wall
-            {
-                app->DrawRectangle(cellArea->x+xoffset, cellArea->y+yoffset, outlineSize, cellArea->h, outlineColor);
-            }
-            if (!cell->rightOpen) // Right wall
-            {
-                app->DrawRectangle(cellArea->x + cellArea->w - outlineSize+xoffset, cellArea->y+yoffset, outlineSize, cellArea->h, outlineColor);
-            }
+            /* Dibujar paredes de celdas */
+            if (!cell->upOpen) // Pared superior
+                app->DrawRectangle(cellX, cellY, cellW, outlineSize, outlineColor);
+            if (!cell->downOpen) // Pared inferior
+                app->DrawRectangle(cellX, cellY + cellH - outlineSize, cellW, outlineSize, outlineColor);
+            if (!cell->leftOpen) // Pared izquierda
+                app->DrawRectangle(cellX, cellY, outlineSize, cellH, outlineColor);
+            if (!cell->rightOpen) // Pared derecha
+                app->DrawRectangle(cellX + cellW - outlineSize, cellY, outlineSize, cellH, outlineColor);
         }
     }
 }
