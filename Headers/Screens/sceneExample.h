@@ -13,4 +13,5 @@ public:
 	void Update() override;
 	void Render() override;
 private:
+	int xoffset, yoffset, previousMouseX, previousMouseY;
 };

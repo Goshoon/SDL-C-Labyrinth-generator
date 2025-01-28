@@ -8,7 +8,7 @@ MazeGenerator::MazeGenerator()
 
 MazeGenerator::~MazeGenerator()
 {
-
+    
 }
 
 void MazeGenerator::GenerateCells()
@@ -27,7 +27,7 @@ void MazeGenerator::GenerateMaze()
     int horizontal = dis(gen);
     int vertical = dis(gen);
     bool finished = false;
-
+    
     std::cout << "Posicion inicial: " << horizontal << ", " << vertical << std::endl;
     cells.push(&cellMatrix[horizontal][vertical]);
     cellMatrix[horizontal][vertical].visited = true;

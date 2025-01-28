@@ -3,6 +3,8 @@
 #include <string>
 #include <unordered_map>
 
+#include "define.h"
+
 #include "SDL.h"
 #include "SDL_image.h"
 #include "SDL_ttf.h"
@@ -25,6 +27,9 @@ public:
 	bool done = false;
 	bool mbLeft = false;
 	bool mbRight = false;
+	bool space = false;
+	int mouseX = 0;
+	int mouseY = 0;
 
 	void Display();
 	void DrawEverything();

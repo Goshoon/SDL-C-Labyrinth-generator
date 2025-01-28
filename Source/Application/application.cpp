@@ -26,11 +26,12 @@ Application::Application()
 	);
 	
 	SDL_SetWindowMinimumSize(window, 800, 600);
-	SDL_RenderSetScale(renderer, 2.0, 2.0);
+	SDL_RenderSetScale(renderer, RENDER_SCALE, RENDER_SCALE);
 
 	done = false;
 	mbLeft = false;
 	mbRight = false;
+	space = false;
 }
 
 Application::~Application()
@@ -53,7 +54,7 @@ void Application::DrawEverything()
 {
 	ImGui::Render();
 	ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), renderer);
-	SDL_SetRenderDrawColor( renderer, 0, 0, 255, 255 );
+	SDL_SetRenderDrawColor( renderer, 209, 204, 220, 255 );
 	SDL_RenderPresent(renderer);
 }
 
@@ -86,6 +87,9 @@ void Application::Input() /* Teclas e interacciones con la ventana */
 				}
 
 			break;
+			case SDL_MOUSEMOTION:
+				SDL_GetMouseState(&mouseX, &mouseY);
+			break;
 			case SDL_MOUSEBUTTONUP:
 				mbLeft = false;
 				mbRight = false;
@@ -101,6 +105,9 @@ void Application::InputReleased(SDL_Event* event)
 		case SDLK_ESCAPE:
 			done = true;
 		break;
+		case SDLK_SPACE:
+			space = false;
+		break;
 	}
 }
 
@@ -108,8 +115,8 @@ void Application::InputPressed(SDL_Event* event)
 {
 	switch (event->key.keysym.sym)
 	{
-		case SDLK_w:
-			std::cout << "hola";
+		case SDLK_SPACE:
+			space = true;
 		break;
 	}
 }

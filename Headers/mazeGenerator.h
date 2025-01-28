@@ -14,8 +14,8 @@ public:
 
 	Cell cellMatrix[MATRIX_DIMENSION][MATRIX_DIMENSION];
 private:
+	std::stack<Cell*> cells;
+
 	void GenerateCells();
 	void GenerateMaze();
-
-	std::stack<Cell*> cells;
 };
