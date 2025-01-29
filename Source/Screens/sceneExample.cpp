@@ -12,7 +12,7 @@ sceneExample::sceneExample()
     generationWindow = true;
     xoffset = 0;
     yoffset = 0;
-    player = new Player(24, CELL_HEIGHT * MATRIX_DIMENSION);
+    player = new Player(24, 24);
 }
 
 sceneExample::~sceneExample()
@@ -48,6 +48,10 @@ void sceneExample::Update()
     ImGui::BeginMainMenuBar();
     ImGui::Text("Prueba");
     ImGui::EndMainMenuBar();
+
+    // std::cout<< "Player Inicialized"; 
+
+    player->Update();
 
 }
 
@@ -85,4 +89,6 @@ void sceneExample::Render()
                 app->DrawRectangle(cellX + cellW - outlineSize, cellY, outlineSize, cellH, outlineColor);
         }
     }
+
+    player->Render();
 }

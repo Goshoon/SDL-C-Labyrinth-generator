@@ -30,6 +30,10 @@ public:
 	bool space = false;
 	bool mbLeft = false;
 	bool mbRight = false;
+	bool mover_arriba = false;
+	bool mover_abajo = false;
+	bool mover_derecha = false;
+	bool mover_izquierda = false;
 
 	void Display();
 	void DrawEverything();

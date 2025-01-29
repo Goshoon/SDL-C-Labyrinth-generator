@@ -2,6 +2,7 @@
 #include "application.h"
 #include "define.h"
 #include "SDL.h"
+// #include "SDL_image.h"
 
 #include <memory>
 extern std::unique_ptr<Application> app;
@@ -15,4 +16,5 @@ public:
 
 	void Update();
 	void Render();
+	void Input();
 };

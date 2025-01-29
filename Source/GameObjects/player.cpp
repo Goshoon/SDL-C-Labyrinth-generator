@@ -18,10 +18,37 @@ Player::Player(int x, int y) // Constructor a posicion
 
 void Player::Update()
 {
-	// Movimiento
+	Input();
 }
 
 void Player::Render()
 {
+	SDL_Color outlineColor = { 0, 0, 0, 255 }; 
 	// Mostrar jugador
+	app->DrawRectangle(position.x, position.y, 24, 24, outlineColor);
+}
+
+void Player::Input()
+{
+	const float desplazamiento = 3.0f;
+
+	if(app->mover_arriba)
+	{
+		position.y = position.y - desplazamiento;
+	}
+
+	if(app->mover_abajo)
+	{
+		position.y = position.y + desplazamiento;
+	}
+
+	if(app->mover_izquierda)
+	{
+		position.x = position.x - desplazamiento;
+	}
+
+	if(app->mover_derecha)
+	{
+		position.x = position.x + desplazamiento;
+	}
 }

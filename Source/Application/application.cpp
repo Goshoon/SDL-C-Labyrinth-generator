@@ -32,6 +32,10 @@ Application::Application()
 	mbLeft = false;
 	mbRight = false;
 	space = false;
+	mover_arriba = false;
+	mover_abajo = false;
+	mover_derecha = false;
+	mover_izquierda = false;
 }
 
 Application::~Application()
@@ -108,6 +112,18 @@ void Application::InputReleased(SDL_Event* event)
 		case SDLK_SPACE:
 			space = false;
 		break;
+		case SDLK_w:
+			mover_arriba = false;
+		break;
+		case SDLK_s:
+			mover_abajo = false;
+		break;
+		case SDLK_a:
+			mover_izquierda = false;
+		break;
+		case SDLK_d:
+			mover_derecha = false;
+		break;
 	}
 }
 
@@ -117,6 +133,18 @@ void Application::InputPressed(SDL_Event* event)
 	{
 		case SDLK_SPACE:
 			space = true;
+		break;
+		case SDLK_w:
+			mover_arriba = true;
+		break;
+		case SDLK_s:
+			mover_abajo = true;
+		break;
+		case SDLK_a:
+			mover_izquierda = true;
+		break;
+		case SDLK_d:
+			mover_derecha = true;
 		break;
 	}
 }

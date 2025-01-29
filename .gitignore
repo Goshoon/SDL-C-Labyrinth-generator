@@ -6,3 +6,4 @@
 # Ignorar folder
 /Dependencies/
 /Bin/
+*.exe
