@@ -36,6 +36,7 @@ Application::Application()
 	mover_abajo = false;
 	mover_derecha = false;
 	mover_izquierda = false;
+	dash = false;
 }
 
 Application::~Application()
@@ -111,6 +112,7 @@ void Application::InputReleased(SDL_Event* event)
 		break;
 		case SDLK_SPACE:
 			space = false;
+			dash = false;
 		break;
 		case SDLK_w:
 			mover_arriba = false;
@@ -133,6 +135,7 @@ void Application::InputPressed(SDL_Event* event)
 	{
 		case SDLK_SPACE:
 			space = true;
+			dash = true;
 		break;
 		case SDLK_w:
 			mover_arriba = true;

@@ -18,6 +18,7 @@ Player::Player(int x, int y) // Constructor a posicion
 
 void Player::Update()
 {
+	// timerDash *= ;
 	Input();
 }
 
@@ -30,7 +31,12 @@ void Player::Render()
 
 void Player::Input()
 {
-	const float desplazamiento = 3.0f;
+	float desplazamiento = 2.0f;
+// && timerDash == 0
+	if(app->dash)
+	{
+		desplazamiento = 3.0f;
+	}
 
 	if(app->mover_arriba)
 	{
@@ -51,4 +57,30 @@ void Player::Input()
 	{
 		position.x = position.x + desplazamiento;
 	}
+
+	if(app->mover_abajo && app->mover_izquierda)
+	{
+		position.x = position.x - (desplazamiento * 0.30f);
+		position.y = position.y + (desplazamiento * 0.30f);
+	}
+
+	if(app->mover_abajo && app->mover_derecha)
+	{
+		position.x = position.x + (desplazamiento * 0.30f);
+		position.y = position.y + (desplazamiento * 0.30f);
+	}
+
+	if(app->mover_arriba && app->mover_derecha)
+	{
+		position.x = position.x + (desplazamiento * 0.30f);
+		position.y = position.y - (desplazamiento * 0.30f);
+	}
+
+	if(app->mover_arriba && app->mover_izquierda)
+	{
+		position.x = position.x - (desplazamiento * 0.30f);
+		position.y = position.y - (desplazamiento * 0.30f);
+	}
+
+
 }

@@ -34,6 +34,7 @@ public:
 	bool mover_abajo = false;
 	bool mover_derecha = false;
 	bool mover_izquierda = false;
+	bool dash = false;
 
 	void Display();
 	void DrawEverything();
