@@ -9,18 +9,21 @@ sceneExample::sceneExample()
 {
 	std::cout << "Created scene!\n";
 
+    generationWindow = true;
     xoffset = 0;
     yoffset = 0;
+    player = new Player(24, CELL_HEIGHT * MATRIX_DIMENSION);
 }
 
 sceneExample::~sceneExample()
 {
 	delete maze;
+    delete player;
 }
 
 void sceneExample::Update()
 {
-    if (app->mbLeft)
+    if (app->mbLeft && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow))
     {
         float multiplier = 0.05f;
         float speed = 0.1f;
@@ -34,10 +37,18 @@ void sceneExample::Update()
         previousMouseX = app->mouseX;
         previousMouseY = app->mouseY;
     }
-    
-    ImGui::Begin("meow");
-    ImGui::Text("hola");
-    ImGui::End();
+
+    if (generationWindow)
+    {
+        ImGui::Begin("meow", &generationWindow);
+        ImGui::Text("hola");
+        ImGui::End();
+    }
+
+    ImGui::BeginMainMenuBar();
+    ImGui::Text("Prueba");
+    ImGui::EndMainMenuBar();
+
 }
 
 void sceneExample::Render()
