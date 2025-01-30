@@ -161,6 +161,19 @@ void Application::DrawRectangle(int x, int y, int width, int height, SDL_Color c
     SDL_RenderFillRect(renderer, &squareRect);
 }
 
+void Application::DrawRectangle(Camera* camera, int x, int y, int width, int height, SDL_Color color)
+{
+    // Establecer el color
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+
+    // Crear area donde se va a dibujar
+    SDL_Rect squareRect = { camera->position.x+x, camera->position.y+y, width, height }; // { x, y, ancho, alto }
+
+    // Dibujar el rectangulo en el area
+    SDL_RenderFillRect(renderer, &squareRect);
+}
+
+
 void Application::RenderImage( SDL_Texture* image, int x, int y )
 {
 	int width, height;

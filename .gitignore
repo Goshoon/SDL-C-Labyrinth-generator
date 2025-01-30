@@ -1,9 +1,10 @@
-# Ignorar archivos .o
+# Ignorar archivos
 *.o
 *.exe
 *.a
+*.ini
 
 # Ignorar folder
 /Dependencies/
 /Bin/
-*.exe
+/.vscode/

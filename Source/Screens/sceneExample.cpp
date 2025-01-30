@@ -1,10 +1,5 @@
 #include "sceneExample.h"
 
-float lerp ( float a, float b, float t ) 
-{ 
-    return a + t *  ( b - a ) ; 
-}
-
 sceneExample::sceneExample()
 {
 	std::cout << "Created scene!\n";
@@ -12,13 +7,11 @@ sceneExample::sceneExample()
     generationWindow = true;
     xoffset = 0;
     yoffset = 0;
-    player = new Player(24, 24);
 }
 
 sceneExample::~sceneExample()
 {
-	delete maze;
-    delete player;
+
 }
 
 void sceneExample::Update()
@@ -29,14 +22,16 @@ void sceneExample::Update()
         float speed = 0.1f;
         previousMouseX = lerp(previousMouseX, app->mouseX, speed);
         previousMouseY = lerp(previousMouseY, app->mouseY, speed);
-        xoffset += (app->mouseX - previousMouseX) * multiplier;
-        yoffset += (app->mouseY - previousMouseY) * multiplier;
+        camera->position.x += (app->mouseX - previousMouseX) * multiplier;
+        camera->position.y += (app->mouseY - previousMouseY) * multiplier;
     }
     else
     {
         previousMouseX = app->mouseX;
         previousMouseY = app->mouseY;
     }
+
+    //player->Update();
 
     if (generationWindow)
     {
@@ -46,13 +41,19 @@ void sceneExample::Update()
     }
 
     ImGui::BeginMainMenuBar();
-    ImGui::Text("Prueba");
+    if (ImGui::BeginMenu("File"))
+    {
+        if (ImGui::MenuItem("New"))
+            generationWindow = true;
+
+        ImGui::Separator();
+
+        if (ImGui::MenuItem("Exit"))
+            app->done = true;
+
+        ImGui::EndMenu();
+    }
     ImGui::EndMainMenuBar();
-
-    // std::cout<< "Player Inicialized"; 
-
-    player->Update();
-
 }
 
 void sceneExample::Render()
@@ -67,8 +68,8 @@ void sceneExample::Render()
         	SDL_Color color = { 0, 0, 0, 255 }; // Color defecto (negro)
         	SDL_Color outlineColor = { 0, 0, 0, 255 };
 
-            int cellX = cellArea->x + xoffset;
-            int cellY = cellArea->y + yoffset;
+            int cellX = cellArea->x + camera->position.x;
+            int cellY = cellArea->y + camera->position.y;
             int cellW = cellArea->w;
             int cellH = cellArea->h;
 
@@ -76,7 +77,7 @@ void sceneExample::Render()
         		color = { 255, 255, 255, 255 };
 
             // Dibujar celdas
-            app->DrawRectangle(cellArea->x+xoffset, cellArea->y+yoffset, cellArea->w, cellArea->h, color);
+            app->DrawRectangle(cellArea->x+camera->position.x, cellArea->y+camera->position.y, cellArea->w, cellArea->h, color);
 
             /* Dibujar paredes de celdas */
             if (!cell->upOpen) // Pared superior
@@ -90,5 +91,5 @@ void sceneExample::Render()
         }
     }
 
-    player->Render();
+    //player->Render();
 }

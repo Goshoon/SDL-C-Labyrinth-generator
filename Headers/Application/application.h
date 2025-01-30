@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 
+#include "camera.h"
 #include "define.h"
 
 #include "SDL.h"
@@ -41,6 +42,7 @@ public:
 	void AddTexture(const std::string& ID, const char* fileDir);
 	SDL_Texture* GetTexture(const std::string& ID);
 	void DrawRectangle(int x, int y, int width, int height, SDL_Color color);
+	void DrawRectangle(Camera* camera, int x, int y, int width, int height, SDL_Color color);
 	void RenderImage( SDL_Texture* image, int x, int y );
 	void RenderImage( SDL_Texture* image, int x, int y, int w, int h );
 	void RenderText(const char* toRenderText);
