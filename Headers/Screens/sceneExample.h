@@ -1,8 +1,11 @@
 #pragma once
+#include <memory>
 #include "mazeGenerator.h"
 #include "screen.h"
 #include "player.h"
+#include "math.h"
 
+#include "imgui.h"
 #include "imgui_impl_sdl2.h"
 #include "imgui_impl_sdlrenderer2.h"
 
@@ -12,12 +15,13 @@ public:
 	sceneExample();
 	~sceneExample();
 
-	MazeGenerator* maze = new MazeGenerator();
 	bool generationWindow;
 	
 	void Update() override;
 	void Render() override;
 private:
 	int xoffset, yoffset, previousMouseX, previousMouseY;
-	Player* player;
+	std::unique_ptr<MazeGenerator> maze = std::make_unique<MazeGenerator>();
+	std::unique_ptr<Player> player = std::make_unique<Player>(32, 32);
+	std::unique_ptr<Camera> camera = std::make_unique<Camera>(0, 0, 640, 480);
 };
