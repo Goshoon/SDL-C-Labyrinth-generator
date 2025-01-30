@@ -31,7 +31,7 @@ void sceneExample::Update()
         previousMouseY = app->mouseY;
     }
 
-    //player->Update();
+    player->Update();
 
     if (generationWindow)
     {
@@ -91,5 +91,5 @@ void sceneExample::Render()
         }
     }
 
-    //player->Render();
+    player->Render();
 }
