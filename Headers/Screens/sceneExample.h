@@ -20,7 +20,7 @@ public:
 	void Update() override;
 	void Render() override;
 private:
-	int xoffset, yoffset, previousMouseX, previousMouseY;
+	int previousMouseX, previousMouseY;
 	std::unique_ptr<MazeGenerator> maze = std::make_unique<MazeGenerator>();
 	std::unique_ptr<Player> player = std::make_unique<Player>(32, 32);
 	std::unique_ptr<Camera> camera = std::make_unique<Camera>(0, 0, 640, 480);

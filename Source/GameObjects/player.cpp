@@ -18,15 +18,13 @@ Player::Player(int x, int y) // Constructor a posicion
 
 void Player::Update()
 {
-	// timerDash *= ;
 	Input();
 }
 
-void Player::Render()
+void Player::Render(Camera* camera) // Posicion en pantalla = posicion + posicion_camara
 {
 	SDL_Color outlineColor = { 0, 0, 0, 255 }; 
-	// Mostrar jugador
-	app->DrawRectangle(position.x, position.y, 24, 24, outlineColor);
+	app->DrawRectangle(position.x + camera->position.x, position.y + camera->position.y, 24, 24, outlineColor);
 }
 
 void Player::Input()

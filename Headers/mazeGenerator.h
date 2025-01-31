@@ -12,6 +12,8 @@ public:
 	MazeGenerator();
 	~MazeGenerator();
 
+	void Generate();
+
 	Cell cellMatrix[MATRIX_DIMENSION][MATRIX_DIMENSION];
 private:
 	std::stack<Cell*> cells;

@@ -2,13 +2,18 @@
 
 MazeGenerator::MazeGenerator()
 {
-	GenerateCells();
-    GenerateMaze();
+	Generate();
 }
 
 MazeGenerator::~MazeGenerator()
 {
     
+}
+
+void MazeGenerator::Generate()
+{
+    GenerateCells();
+    GenerateMaze();
 }
 
 void MazeGenerator::GenerateCells()

@@ -3,10 +3,7 @@
 sceneExample::sceneExample()
 {
 	std::cout << "Created scene!\n";
-
     generationWindow = true;
-    xoffset = 0;
-    yoffset = 0;
 }
 
 sceneExample::~sceneExample()
@@ -68,6 +65,7 @@ void sceneExample::Render()
         	SDL_Color color = { 0, 0, 0, 255 }; // Color defecto (negro)
         	SDL_Color outlineColor = { 0, 0, 0, 255 };
 
+            /* Posicion de dibujado */
             int cellX = cellArea->x + camera->position.x;
             int cellY = cellArea->y + camera->position.y;
             int cellW = cellArea->w;
@@ -91,5 +89,5 @@ void sceneExample::Render()
         }
     }
 
-    player->Render();
+    player->Render(camera.get());
 }
