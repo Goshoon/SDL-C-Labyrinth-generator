@@ -7,7 +7,5 @@
 # Ignorar folder
 /Dependencies/
 /Bin/
-*.exe
 /.vscode/
-Bin/run.exe
 imgui.ini
