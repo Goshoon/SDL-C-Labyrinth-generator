@@ -8,18 +8,17 @@
 
 extern std::unique_ptr<Application> app;
 
-class Player
+class Contreras
 {
 
 public:
-	Player();
-	Player(int x, int y);
+	Contreras();
+	Contreras(int x, int y);
 	SDL_Rect position;
 
 	void Update();
-	void Render(Camera* camera);
+    void Render(Camera* camera);
+
 private:
-	void Input();
-	void clampsito();
-	
+	void Movement();
 };
