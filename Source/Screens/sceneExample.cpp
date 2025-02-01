@@ -54,6 +54,8 @@ void sceneExample::Update()
     }
 
     player->Update();
+    contreras->Update();
+
     camera->campsito();
 
     if (generationWindow)
@@ -116,4 +118,7 @@ void sceneExample::Render()
     }
 
     player->Render(camera.get());
+
+    contreras->Render(camera.get());
+
 }

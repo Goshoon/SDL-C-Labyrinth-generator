@@ -114,6 +114,9 @@ void Application::InputReleased(SDL_Event* event)
 			space = false;
 			dash = false;
 		break;
+		case SDLK_LSHIFT:
+			dash = false;
+		break;
 		case SDLK_w:
 			mover_arriba = false;
 		break;
@@ -135,6 +138,9 @@ void Application::InputPressed(SDL_Event* event)
 	{
 		case SDLK_SPACE:
 			space = true;
+			dash = true;
+		break;
+		case SDLK_LSHIFT:
 			dash = true;
 		break;
 		case SDLK_w:
