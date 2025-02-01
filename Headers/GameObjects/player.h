@@ -10,7 +10,6 @@ extern std::unique_ptr<Application> app;
 
 class Player
 {
-
 public:
 	Player();
 	Player(int x, int y);
@@ -18,8 +17,5 @@ public:
 
 	void Update();
 	void Render(Camera* camera);
-private:
 	void Input();
-	void clampsito();
-	
 };
