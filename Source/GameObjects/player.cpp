@@ -35,7 +35,9 @@ void Player::Render(Camera *camera)
 void Player::Input()
 {
 	float desplazamiento = 2.0f;
-// && timerDash == 0
+	
+	// && timerDash == 0
+
 	if(app->dash)
 	{
 		desplazamiento = 3.0f;
@@ -61,28 +63,30 @@ void Player::Input()
 		position.x = position.x + desplazamiento;
 	}
 
+	desplazamiento = 1.0f;
+
 	if(app->mover_abajo && app->mover_izquierda)
 	{
-		position.x = position.x - (desplazamiento * 0.30f);
-		position.y = position.y + (desplazamiento * 0.30f);
+		position.x = position.x - (desplazamiento * 0.02);
+		position.y = position.y + (desplazamiento * 0.02);
 	}
 
 	if(app->mover_abajo && app->mover_derecha)
 	{
-		position.x = position.x + (desplazamiento * 0.30f);
-		position.y = position.y + (desplazamiento * 0.30f);
+		position.x = position.x + (desplazamiento * 0.02);
+		position.y = position.y + (desplazamiento * 0.02);
 	}
 
 	if(app->mover_arriba && app->mover_derecha)
 	{
-		position.x = position.x + (desplazamiento * 0.30f);
-		position.y = position.y - (desplazamiento * 0.30f);
+		position.x = position.x + (desplazamiento * 0.02);
+		position.y = position.y - (desplazamiento * 0.02);
 	}
 
 	if(app->mover_arriba && app->mover_izquierda)
 	{
-		position.x = position.x - (desplazamiento * 0.30f);
-		position.y = position.y - (desplazamiento * 0.30f);
+		position.x = position.x - (desplazamiento * 0.02);
+		position.y = position.y - (desplazamiento * 0.02);
 	}
 
 

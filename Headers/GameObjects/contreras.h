@@ -21,4 +21,5 @@ public:
 
 private:
 	void Movement();
+	void clampsito();
 };
