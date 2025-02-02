@@ -83,6 +83,8 @@ void sceneExample::Update()
 
 void sceneExample::Render()
 {
+    app->CalculateZoom(camera.get());
+    
 	for (int i = 0; i < MATRIX_DIMENSION; ++i)
     {
         for (int j = 0; j < MATRIX_DIMENSION; ++j)

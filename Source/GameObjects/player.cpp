@@ -1,6 +1,4 @@
 #include "player.h"
-#include <algorithm>
-#include <iostream>
 
 Player::Player() // Contructor por defecto
 {
@@ -99,6 +97,6 @@ void Player::clampsito(){
 
 	position.x = std::clamp((position.x), 0, relative_position_x);
 	position.y = std::clamp((position.y), 0, relative_position_y);
-	std::cout<<position.x<< " : " <<position.y << "\n";
+	// std::cout<<position.x<< " : " <<position.y << "\n";
 
 }

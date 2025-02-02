@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <math.h>
 
 #include "camera.h"
 #include "define.h"
@@ -36,6 +37,7 @@ public:
 	bool mover_derecha = false;
 	bool mover_izquierda = false;
 	bool dash = false;
+	float zoom = 1.0f;
 
 	void Display();
 	void DrawEverything();
@@ -47,6 +49,7 @@ public:
 	void RenderImage( SDL_Texture* image, int x, int y );
 	void RenderImage( SDL_Texture* image, int x, int y, int w, int h );
 	void RenderText(const char* toRenderText);
+	void CalculateZoom(Camera* camera);
 private:
 	void InputReleased(SDL_Event* event);
 	void InputPressed(SDL_Event* event);

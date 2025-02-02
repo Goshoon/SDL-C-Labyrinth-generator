@@ -37,6 +37,7 @@ Application::Application()
 	mover_derecha = false;
 	mover_izquierda = false;
 	dash = false;
+	zoom = 1.0f;
 }
 
 Application::~Application()
@@ -58,6 +59,7 @@ void Application::Display()
 void Application::DrawEverything()
 {
 	ImGui::Render();
+	SDL_RenderSetScale(renderer, RENDER_SCALE, RENDER_SCALE); // Ajustar la escala del renderer
 	ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), renderer);
 	SDL_SetRenderDrawColor( renderer, 209, 204, 220, 255 );
 	SDL_RenderPresent(renderer);
@@ -98,6 +100,18 @@ void Application::Input() /* Teclas e interacciones con la ventana */
 			case SDL_MOUSEBUTTONUP:
 				mbLeft = false;
 				mbRight = false;
+			break;
+			case SDL_MOUSEWHEEL:
+
+				if (event.wheel.y > 0)
+				{
+        			zoom =  lerp(zoom, zoom * 1.2f, 0.05f);
+				}
+				else if (event.wheel.y < 0)
+				{
+        			zoom =  lerp(zoom, zoom * 0.8f, 0.05f);
+				}
+				
 			break;
         }
     }
@@ -199,4 +213,12 @@ void Application::RenderImage( SDL_Texture* image, int x, int y, int w, int h )
 void Application::RenderText(const char* toRenderText)
 {
 	
+}
+
+void Application::CalculateZoom(Camera* camera)
+{
+	camera->position.w = (int)(camera->position.w / zoom);
+	camera->position.h = (int)(camera->position.h / zoom);
+	std::cout <<zoom;
+	SDL_RenderSetScale(renderer, zoom, zoom); // Ajustar la escala del renderer
 }

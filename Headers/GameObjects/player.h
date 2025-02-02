@@ -3,6 +3,8 @@
 #include "define.h"
 #include "camera.h"
 #include "SDL.h"
+#include <algorithm>
+#include <iostream>
 
 #include <memory>
 
