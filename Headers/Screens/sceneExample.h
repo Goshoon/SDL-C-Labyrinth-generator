@@ -5,6 +5,8 @@
 #include "player.h"
 #include "contreras.h"
 #include "math.h"
+#include <chrono>
+#include <thread>  // Para usar std::this_thread::sleep_for
 
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"

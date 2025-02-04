@@ -1,7 +1,4 @@
 #include "contreras.h"
-#include <algorithm>
-#include <iostream>
-#include <cstdlib>
 
 Contreras::Contreras() // Contructor por defecto
 {
@@ -22,7 +19,7 @@ Contreras::Contreras(int x, int y) // Constructor a posicion
 void Contreras::Update()
 {
 
-	Movement();
+	// Movement();
 	clampsito();
 
 }
@@ -84,4 +81,82 @@ void Contreras::Movement()
 	}
 	
 
+}
+
+void Contreras::Chase(Player* player)
+{
+
+	std::cout << "player_coordinates: " << player->position.x << ", " << player->position.y << "\n";
+	std::cout << "contreras_coordinates: " << position.x << ", " << position.y << "\n";
+
+	if(ChaseCheck(position.x, position.y, player->position.x, player->position.y ))
+	{
+		std::cout << "you got it";
+		return;
+	}
+
+	// float desplazamiento = 2.0f;
+
+	// std::cout << "probabilidad: " << probabilidad << "\n";
+
+	float diference_x = 0.00f;
+	float diference_y = 0.00f;
+	diference_x = player->position.x - position.x;
+	diference_y = player->position.y - position.y;
+
+	// std::cout << "diferencias: " << diference_x << ", " << diference_y << "\n";
+
+	if(diference_x < 1)
+	{
+		diference_x = -(diference_x); 
+	}
+
+	if(diference_y < 1)
+	{
+		diference_y = -(diference_y);
+	}
+
+	float desplazamiento = 2.0f;
+	if(diference_x > diference_y)
+	{
+
+		if(player->position.x > position.x)
+		{
+
+			position.x += desplazamiento;
+
+		}
+
+		if(player->position.x < position.x)
+		{
+
+			position.x -= desplazamiento;
+
+		}
+	
+	}
+	else
+	{
+
+		if(player->position.y > position.y)
+		{
+
+			position.y += desplazamiento;
+
+		}
+		
+		if(player->position.y < position.y)
+		{
+
+			position.y -= desplazamiento;
+
+		}
+
+	}
+
+}
+
+bool Contreras::ChaseCheck(float x, float y, float x_c, float y_c)
+{
+	return std::abs(x - x_c) <= 20 && std::abs(y - y_c) <= 20;
 }

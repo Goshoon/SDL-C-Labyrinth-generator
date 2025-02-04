@@ -3,6 +3,11 @@
 #include "define.h"
 #include "camera.h"
 #include "SDL.h"
+#include <algorithm>
+#include <iostream>
+#include <cstdlib>
+#include "player.h"
+#include <cmath>
 
 #include <memory>
 
@@ -18,6 +23,9 @@ public:
 
 	void Update();
     void Render(Camera* camera);
+	void Chase(Player* player);
+	bool ChaseCheck(float x, float y, float x_c, float y_c);
+	int Cuadrante;
 
 private:
 	void Movement();

@@ -219,6 +219,6 @@ void Application::CalculateZoom(Camera* camera)
 {
 	camera->position.w = (int)(camera->position.w / zoom);
 	camera->position.h = (int)(camera->position.h / zoom);
-	std::cout <<zoom;
+	// std::cout <<zoom;
 	SDL_RenderSetScale(renderer, zoom, zoom); // Ajustar la escala del renderer
 }

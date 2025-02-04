@@ -44,6 +44,15 @@ void sceneExample::Update()
         camera->position.x = lerp(camera->position.x, x_target, 0.02);
         camera->position.y = lerp(camera->position.y, y_target, 0.02);
 
+        for(int i = 0; i > 5; i++ ){
+
+            x_target = -(player->position.x - (size_width / 2));
+            y_target = -(player->position.y - (size_heigth / 2));
+
+            camera->position.x = lerp(camera->position.x, x_target, 0.02);
+            camera->position.y = lerp(camera->position.y, y_target, 0.02);
+
+        }
     }
     else
     {
@@ -54,6 +63,7 @@ void sceneExample::Update()
     }
 
     player->Update();
+    contreras->Chase(player.get());
     contreras->Update();
 
     camera->campsito();
