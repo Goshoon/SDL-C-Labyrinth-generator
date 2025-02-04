@@ -19,23 +19,19 @@ Player::Player(int x, int y) // Constructor a posicion
 void Player::Update()
 {
 	Input();
-
 	clampsito();
-
 }
 
-void Player::Render(Camera *camera)
+void Player::Render(Camera& camera)
 {
-	SDL_Color outlineColor = { 0, 0, 0, 255 }; 
-	app->DrawRectangle(position.x + camera->position.x, position.y + camera->position.y, 24, 24, outlineColor);
+	SDL_Color outlineColor = { 0, 0, 0, 255 };
+	app->DrawRectangle(position.x + camera.position.x, position.y + camera.position.y, 24, 24, outlineColor);
 }
 
 void Player::Input()
 {
 	float desplazamiento = 2.0f;
 	
-	// && timerDash == 0
-
 	if(app->dash)
 	{
 		desplazamiento = 3.0f;
@@ -93,10 +89,8 @@ void Player::Input()
 void Player::clampsito(){
 
 	int relative_position_x = CELL_WIDTH * MATRIX_DIMENSION - position.w * 2; 
-	int relative_position_y = CELL_WIDTH * MATRIX_DIMENSION - position.h * 2; 
+	int relative_position_y = CELL_HEIGHT * MATRIX_DIMENSION - position.h * 2; 
 
 	position.x = std::clamp((position.x), 0, relative_position_x);
 	position.y = std::clamp((position.y), 0, relative_position_y);
-	// std::cout<<position.x<< " : " <<position.y << "\n";
-
 }

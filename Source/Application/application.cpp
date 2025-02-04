@@ -190,7 +190,7 @@ void Application::DrawRectangle(Camera* camera, int x, int y, int width, int hei
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
     // Crear area donde se va a dibujar
-    SDL_Rect squareRect = { camera->position.x+x, camera->position.y+y, width, height }; // { x, y, ancho, alto }
+    SDL_Rect squareRect = { camera->position.x-x, camera->position.y-y, width, height }; // { x, y, ancho, alto }
 
     // Dibujar el rectangulo en el area
     SDL_RenderFillRect(renderer, &squareRect);

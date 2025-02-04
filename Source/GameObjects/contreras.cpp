@@ -85,15 +85,17 @@ void Contreras::Movement()
 
 void Contreras::Chase(Player* player)
 {
-
+/*
 	std::cout << "player_coordinates: " << player->position.x << ", " << player->position.y << "\n";
 	std::cout << "contreras_coordinates: " << position.x << ", " << position.y << "\n";
-
+*/
+	/*
 	if(ChaseCheck(position.x, position.y, player->position.x, player->position.y ))
 	{
-		std::cout << "you got it";
+		//std::cout << "you got it";
 		return;
 	}
+	*/
 
 	// float desplazamiento = 2.0f;
 

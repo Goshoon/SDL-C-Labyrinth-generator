@@ -3,10 +3,10 @@
 #include "define.h"
 #include "camera.h"
 #include "SDL.h"
-#include <algorithm>
-#include <iostream>
 
 #include <memory>
+#include <algorithm>
+#include <iostream>
 
 extern std::unique_ptr<Application> app;
 
@@ -19,7 +19,7 @@ public:
 	SDL_Rect position;
 
 	void Update();
-	void Render(Camera* camera);
+	void Render(Camera& camera);
 private:
 	void Input();
 	void clampsito();

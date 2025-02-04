@@ -9,8 +9,6 @@ sceneExample::sceneExample()
 sceneExample::~sceneExample()
 {
 
-
-
 }
 
 void sceneExample::Update()
@@ -20,14 +18,14 @@ void sceneExample::Update()
     {
         float multiplier = 0.05f;
         float speed = 0.1f;
+
         previousMouseX = lerp(previousMouseX, app->mouseX, speed);
         previousMouseY = lerp(previousMouseY, app->mouseY, speed);
         camera->position.x += (app->mouseX - previousMouseX) * multiplier;
         camera->position.y += (app->mouseY - previousMouseY) * multiplier;
     }
-    else if(app->mover_abajo || app->mover_arriba || app->mover_derecha || app->mover_izquierda)
+    else if ( app->mover_abajo || app->mover_arriba || app->mover_derecha || app->mover_izquierda )
     {
-
         float multiplier = 0.05f;
 
         int size_width = 0;
@@ -44,29 +42,25 @@ void sceneExample::Update()
         camera->position.x = lerp(camera->position.x, x_target, 0.02);
         camera->position.y = lerp(camera->position.y, y_target, 0.02);
 
-        for(int i = 0; i > 5; i++ ){
-
+        for(int i = 0; i > 5; i++ )
+        {
             x_target = -(player->position.x - (size_width / 2));
             y_target = -(player->position.y - (size_heigth / 2));
 
             camera->position.x = lerp(camera->position.x, x_target, 0.02);
             camera->position.y = lerp(camera->position.y, y_target, 0.02);
-
         }
     }
     else
     {
-
         previousMouseX = app->mouseX;
         previousMouseY = app->mouseY;
-
     }
 
     player->Update();
     contreras->Chase(player.get());
     contreras->Update();
-
-    camera->campsito();
+    camera->Update();
 
     if (generationWindow)
     {
@@ -76,7 +70,7 @@ void sceneExample::Update()
     }
 
     ImGui::BeginMainMenuBar();
-    if (ImGui::BeginMenu("HOLA PUTOS PENDEJOS BABOSOS IDIOTAS"))
+    if (ImGui::BeginMenu("Files"))
     {
         if (ImGui::MenuItem("New"))
             generationWindow = true;
@@ -129,8 +123,6 @@ void sceneExample::Render()
         }
     }
 
-    player->Render(camera.get());
-
+    player->Render(*camera);
     contreras->Render(camera.get());
-
 }

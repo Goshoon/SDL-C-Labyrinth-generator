@@ -5,6 +5,6 @@
 
 #include "SDL.h"
 
-bool Collide(SDL_Rect* rectA, SDL_Rect* rectB);
+bool Collide(SDL_Rect& rectA, SDL_Rect& rectB);
 
 #endif

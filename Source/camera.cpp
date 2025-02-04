@@ -1,6 +1,4 @@
 #include "camera.h"
-#include <algorithm>
-#include <iostream>
 
 Camera::Camera(int x, int y, int w, int h)
 {
@@ -10,14 +8,14 @@ Camera::Camera(int x, int y, int w, int h)
 	position.w = w;
 	position.h = h;
 	
-	campsito();
+	Update();
 }
 
-void Camera::campsito()
+void Camera::Update()
 {
-
-	position.x = std::clamp((position.x), -600, 200);
-	position.y = std::clamp((position.y),  -600, 200);
-	// std::cout<<position.x<< " Camera_X:Camera_Y " <<position.y << "\n";
-
+	int widthLimit = CELL_WIDTH * MATRIX_DIMENSION;
+	int heightLimit = CELL_HEIGHT * MATRIX_DIMENSION;
+	position.x = std::clamp(position.x, -200, widthLimit);
+	position.y = std::clamp(position.y, -200, heightLimit);
+	std::cout << position.y << "\n";
 }

@@ -1,5 +1,7 @@
 #pragma once
+#include "define.h"
 #include "SDL.h"
+
 #include <algorithm>
 #include <iostream>
 
@@ -11,6 +13,6 @@ public:
     SDL_Rect position;
 
     Camera(int x, int y, int w, int h);
-	void campsito();
+	void Update();
     void calculateZoom();
 };

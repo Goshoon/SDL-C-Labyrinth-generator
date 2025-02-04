@@ -3,13 +3,14 @@
 #include "define.h"
 #include "camera.h"
 #include "SDL.h"
-#include <algorithm>
-#include <iostream>
-#include <cstdlib>
 #include "player.h"
-#include <cmath>
 
 #include <memory>
+#include <cmath>
+#include <ctime>
+#include <iostream>
+#include <cstdlib>
+#include <algorithm>
 
 extern std::unique_ptr<Application> app;
 
