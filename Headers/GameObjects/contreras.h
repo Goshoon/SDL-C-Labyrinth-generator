@@ -23,7 +23,7 @@ public:
 	SDL_Rect position;
 
 	void Update();
-    void Render(Camera* camera);
+    void Render(Camera& camera);
 	void Chase(Player* player);
 	bool ChaseCheck(float x, float y, float x_c, float y_c);
 	int Cuadrante;

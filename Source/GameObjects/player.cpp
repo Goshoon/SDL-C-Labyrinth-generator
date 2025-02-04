@@ -25,7 +25,7 @@ void Player::Update()
 void Player::Render(Camera& camera)
 {
 	SDL_Color outlineColor = { 0, 0, 0, 255 };
-	app->DrawRectangle(position.x + camera.position.x, position.y + camera.position.y, 24, 24, outlineColor);
+	app->DrawRectangle(camera, position.x, position.y, 24, 24, outlineColor);
 }
 
 void Player::Input()

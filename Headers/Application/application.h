@@ -45,11 +45,11 @@ public:
 	void AddTexture(const std::string& ID, const char* fileDir);
 	SDL_Texture* GetTexture(const std::string& ID);
 	void DrawRectangle(int x, int y, int width, int height, SDL_Color color);
-	void DrawRectangle(Camera* camera, int x, int y, int width, int height, SDL_Color color);
+	void DrawRectangle(Camera& camera, int x, int y, int width, int height, SDL_Color color);
 	void RenderImage( SDL_Texture* image, int x, int y );
 	void RenderImage( SDL_Texture* image, int x, int y, int w, int h );
 	void RenderText(const char* toRenderText);
-	void CalculateZoom(Camera* camera);
+	void CalculateZoom(Camera& camera);
 private:
 	void InputReleased(SDL_Event* event);
 	void InputPressed(SDL_Event* event);

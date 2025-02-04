@@ -35,10 +35,10 @@ void Contreras::clampsito(){
 
 }
 
-void Contreras::Render(Camera* camera) // Posicion en pantalla = posicion + posicion_camara
+void Contreras::Render(Camera& camera) // Posicion en pantalla = posicion + posicion_camara
 {
 	SDL_Color outlineColor = { 255, 0, 0, 255 }; 
-	app->DrawRectangle(position.x + camera->position.x, position.y + camera->position.y, 24, 24, outlineColor);
+	app->DrawRectangle(camera, position.x, position.y, 24, 24, outlineColor);
 }
 
 void Contreras::Movement()

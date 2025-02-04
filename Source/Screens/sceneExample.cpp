@@ -13,6 +13,9 @@ sceneExample::~sceneExample()
 
 void sceneExample::Update()
 {
+    player->Update();
+    contreras->Chase(player.get());
+    contreras->Update();
 
     if (app->mbLeft && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow))
     {
@@ -21,8 +24,8 @@ void sceneExample::Update()
 
         previousMouseX = lerp(previousMouseX, app->mouseX, speed);
         previousMouseY = lerp(previousMouseY, app->mouseY, speed);
-        camera->position.x += (app->mouseX - previousMouseX) * multiplier;
-        camera->position.y += (app->mouseY - previousMouseY) * multiplier;
+        camera->position.x -= (app->mouseX - previousMouseX) * multiplier;
+        camera->position.y -= (app->mouseY - previousMouseY) * multiplier;
     }
     else if ( app->mover_abajo || app->mover_arriba || app->mover_derecha || app->mover_izquierda )
     {
@@ -36,8 +39,8 @@ void sceneExample::Update()
 
         SDL_GetWindowSize(app->window, &size_width, &size_heigth);
 
-        x_target = -(player->position.x - (size_width / 2));
-        y_target = -(player->position.y - (size_heigth / 2));
+        x_target = (player->position.x - (size_width / 2));
+        y_target = (player->position.y - (size_heigth / 2));
 
         camera->position.x = lerp(camera->position.x, x_target, 0.02);
         camera->position.y = lerp(camera->position.y, y_target, 0.02);
@@ -57,9 +60,6 @@ void sceneExample::Update()
         previousMouseY = app->mouseY;
     }
 
-    player->Update();
-    contreras->Chase(player.get());
-    contreras->Update();
     camera->Update();
 
     if (generationWindow)
@@ -87,7 +87,7 @@ void sceneExample::Update()
 
 void sceneExample::Render()
 {
-    app->CalculateZoom(camera.get());
+    app->CalculateZoom(*camera);
     
 	for (int i = 0; i < MATRIX_DIMENSION; ++i)
     {
@@ -100,8 +100,8 @@ void sceneExample::Render()
         	SDL_Color outlineColor = { 0, 0, 0, 255 };
 
             /* Posicion de dibujado */
-            int cellX = cellArea->x + camera->position.x;
-            int cellY = cellArea->y + camera->position.y;
+            int cellX = cellArea->x; //+ camera->position.x;
+            int cellY = cellArea->y; //+ camera->position.y;
             int cellW = cellArea->w;
             int cellH = cellArea->h;
 
@@ -109,20 +109,20 @@ void sceneExample::Render()
         		color = { 255, 255, 255, 255 };
 
             // Dibujar celdas
-            app->DrawRectangle(cellArea->x+camera->position.x, cellArea->y+camera->position.y, cellArea->w, cellArea->h, color);
+            app->DrawRectangle(*camera, cellX, cellY, cellW, cellH, color);
 
             /* Dibujar paredes de celdas */
             if (!cell->upOpen) // Pared superior
-                app->DrawRectangle(cellX, cellY, cellW, outlineSize, outlineColor);
+                app->DrawRectangle(*camera, cellX, cellY, cellW, outlineSize, outlineColor);
             if (!cell->downOpen) // Pared inferior
-                app->DrawRectangle(cellX, cellY + cellH - outlineSize, cellW, outlineSize, outlineColor);
+                app->DrawRectangle(*camera, cellX, cellY + cellH - outlineSize, cellW, outlineSize, outlineColor);
             if (!cell->leftOpen) // Pared izquierda
-                app->DrawRectangle(cellX, cellY, outlineSize, cellH, outlineColor);
+                app->DrawRectangle(*camera, cellX, cellY, outlineSize, cellH, outlineColor);
             if (!cell->rightOpen) // Pared derecha
-                app->DrawRectangle(cellX + cellW - outlineSize, cellY, outlineSize, cellH, outlineColor);
+                app->DrawRectangle(*camera, cellX + cellW - outlineSize, cellY, outlineSize, cellH, outlineColor);
         }
     }
 
     player->Render(*camera);
-    contreras->Render(camera.get());
+    contreras->Render(*camera);
 }
