@@ -16,20 +16,16 @@ Player::Player(int x, int y) // Constructor a posicion
 	position.h = 12;
 }
 
-void Player::Update()
+void Player::Update(MazeGenerator& maze)
 {
 	Input();
 	clampsito();
-}
+	int x = position.x / CELL_WIDTH;
+	int y = position.y / CELL_WIDTH;
 
-void Player::Render(Camera& camera)
-{
-	SDL_Color outlineColor = { 0, 0, 0, 255 };
-	app->DrawRectangle(camera, position.x, position.y, 24, 24, outlineColor);
-}
+	std::cout << position.x << " : " << x << "\n";
+	cell = &maze.cellMatrix[x][y];
 
-void Player::Input()
-{
 	float desplazamiento = 2.0f;
 	
 	if(app->dash)
@@ -37,28 +33,28 @@ void Player::Input()
 		desplazamiento = 3.0f;
 	}
 
-	if(app->mover_arriba)
+	if(app->mover_arriba && Collide(position, cell->top) == false)
 	{
 		position.y = position.y - desplazamiento;
 	}
 
-	if(app->mover_abajo)
+	if(app->mover_abajo && Collide(position, cell->bottom) == false)
 	{
 		position.y = position.y + desplazamiento;
 	}
 
-	if(app->mover_izquierda)
+	if(app->mover_izquierda && Collide(position, cell->left) == false)
 	{
 		position.x = position.x - desplazamiento;
 	}
 
-	if(app->mover_derecha)
+	if(app->mover_derecha && Collide(position, cell->right) == false)
 	{
 		position.x = position.x + desplazamiento;
 	}
 
+/*
 	desplazamiento = 1.0f;
-
 	if(app->mover_abajo && app->mover_izquierda)
 	{
 		position.x = position.x - (desplazamiento * 0.02);
@@ -83,7 +79,20 @@ void Player::Input()
 		position.y = position.y - (desplazamiento * 0.02);
 	}
 
+*/
+}
 
+void Player::Render(Camera& camera)
+{
+	SDL_Color outlineColor = { 0, 0, 0, 255 };
+	SDL_Color blue = { 0, 0, 255, 255 };
+	app->DrawRectangle(camera, cell->position.x, cell->position.y, cell->position.w, cell->position.h, blue);
+	app->DrawRectangle(camera, position.x, position.y, 24, 24, outlineColor);
+}
+
+void Player::Input()
+{
+	
 }
 
 void Player::clampsito(){

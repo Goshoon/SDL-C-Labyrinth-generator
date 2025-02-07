@@ -2,6 +2,10 @@
 #include "application.h"
 #include "define.h"
 #include "camera.h"
+#include "cell.h"
+#include "MazeGenerator.h"
+#include "collision.h"
+
 #include "SDL.h"
 
 #include <memory>
@@ -17,8 +21,9 @@ public:
 	Player();
 	Player(int x, int y);
 	SDL_Rect position;
+	Cell* cell;
 
-	void Update();
+	void Update(MazeGenerator& maze);
 	void Render(Camera& camera);
 private:
 	void Input();

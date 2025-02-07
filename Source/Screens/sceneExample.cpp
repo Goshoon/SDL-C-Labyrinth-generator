@@ -13,7 +13,7 @@ sceneExample::~sceneExample()
 
 void sceneExample::Update()
 {
-    player->Update();
+    player->Update(*maze);
     contreras->Chase(player.get());
     contreras->Update();
 
