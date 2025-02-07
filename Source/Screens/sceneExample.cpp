@@ -93,33 +93,8 @@ void sceneExample::Render()
     {
         for (int j = 0; j < MATRIX_DIMENSION; ++j)
         {
-        	short outlineSize = 2;
         	Cell* cell = &maze->cellMatrix[i][j];
-        	SDL_Rect* cellArea = &cell->rect;
-        	SDL_Color color = { 0, 0, 0, 255 }; // Color defecto (negro)
-        	SDL_Color outlineColor = { 0, 0, 0, 255 };
-
-            /* Posicion de dibujado */
-            int cellX = cellArea->x; //+ camera->position.x;
-            int cellY = cellArea->y; //+ camera->position.y;
-            int cellW = cellArea->w;
-            int cellH = cellArea->h;
-
-        	if (maze->cellMatrix[i][j].visited) // Revisar si se itero por esta celda
-        		color = { 255, 255, 255, 255 };
-
-            // Dibujar celdas
-            app->DrawRectangle(*camera, cellX, cellY, cellW, cellH, color);
-
-            /* Dibujar paredes de celdas */
-            if (!cell->upOpen) // Pared superior
-                app->DrawRectangle(*camera, cellX, cellY, cellW, outlineSize, outlineColor);
-            if (!cell->downOpen) // Pared inferior
-                app->DrawRectangle(*camera, cellX, cellY + cellH - outlineSize, cellW, outlineSize, outlineColor);
-            if (!cell->leftOpen) // Pared izquierda
-                app->DrawRectangle(*camera, cellX, cellY, outlineSize, cellH, outlineColor);
-            if (!cell->rightOpen) // Pared derecha
-                app->DrawRectangle(*camera, cellX + cellW - outlineSize, cellY, outlineSize, cellH, outlineColor);
+            cell->Render(*camera);
         }
     }
 

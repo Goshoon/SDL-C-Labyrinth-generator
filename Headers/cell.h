@@ -1,7 +1,13 @@
 #pragma once
 #include "define.h"
-#include "wall.h"
+#include "camera.h"
+#include "application.h"
+
 #include "SDL.h"
+
+#include <memory>
+
+extern std::unique_ptr<Application> app;
 
 class Cell
 {
@@ -10,7 +16,7 @@ public:
 	Cell(int x, int y);
 	~Cell();
 
-	SDL_Rect rect;
+	SDL_Rect position, top, bottom, left, right;
 	
 	bool visited = false;
 	
@@ -18,10 +24,6 @@ public:
 	bool downOpen = false;
 	bool leftOpen = false;
 	bool rightOpen = false;
-	/*
-	Wall top;
-	Wall bottom;
-	Wall left;
-	Wall Right;
-	*/
+
+	void Render(Camera& camera);
 };
