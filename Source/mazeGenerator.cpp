@@ -51,8 +51,10 @@ void MazeGenerator::GenerateMaze()
                 if (vertical > 0 && !cellMatrix[horizontal][vertical - 1].visited)
                 {
                     cellMatrix[horizontal][vertical].upOpen = true;
+                    cellMatrix[horizontal][vertical].top = { 0, 0, 0, 0 };
                     vertical--;
                     cellMatrix[horizontal][vertical].downOpen = true;
+                    cellMatrix[horizontal][vertical].bottom = { 0, 0, 0, 0 };
                     moved = true;
                 }
                 break;
@@ -60,8 +62,10 @@ void MazeGenerator::GenerateMaze()
                 if (vertical < MATRIX_DIMENSION - 1 && !cellMatrix[horizontal][vertical + 1].visited)
                 {
                     cellMatrix[horizontal][vertical].downOpen = true;
+                    cellMatrix[horizontal][vertical].bottom = { 0, 0, 0, 0 };
                     vertical++;
                     cellMatrix[horizontal][vertical].upOpen = true;
+                    cellMatrix[horizontal][vertical].top = { 0, 0, 0, 0 };
                     moved = true;
                 }
                 break;
@@ -69,8 +73,10 @@ void MazeGenerator::GenerateMaze()
                 if (horizontal > 0 && !cellMatrix[horizontal - 1][vertical].visited)
                 {
                     cellMatrix[horizontal][vertical].leftOpen = true;
+                    cellMatrix[horizontal][vertical].left = { 0, 0, 0, 0 };
                     horizontal--;
                     cellMatrix[horizontal][vertical].rightOpen = true;
+                    cellMatrix[horizontal][vertical].right = { 0, 0, 0, 0 };
                     moved = true;
                 }
                 break;
@@ -78,8 +84,10 @@ void MazeGenerator::GenerateMaze()
                 if (horizontal < MATRIX_DIMENSION - 1 && !cellMatrix[horizontal + 1][vertical].visited)
                 {
                     cellMatrix[horizontal][vertical].rightOpen = true;
+                    cellMatrix[horizontal][vertical].right = { 0, 0, 0, 0 };
                     horizontal++;
                     cellMatrix[horizontal][vertical].leftOpen = true;
+                    cellMatrix[horizontal][vertical].left = { 0, 0, 0, 0 };
                     moved = true;
                 }
                 break;
@@ -87,8 +95,8 @@ void MazeGenerator::GenerateMaze()
 
             if (moved)
             {
-                cells.push(&cellMatrix[horizontal][vertical]);
-                cellMatrix[horizontal][vertical].visited = true;
+                cells.push(&cellMatrix[horizontal][vertical]); // First push to stack
+                cellMatrix[horizontal][vertical].visited = true; // Then mark as visited
                 std::cout << "Posicion: " << horizontal << ", " << vertical << std::endl;
                 break;
             }
@@ -100,12 +108,13 @@ void MazeGenerator::GenerateMaze()
             if (!cells.empty())
             {
                 auto topCell = cells.top();
-                horizontal = topCell->rect.x/CELL_WIDTH; // Adjust if necessary
-                vertical = topCell->rect.y/CELL_HEIGHT;
+                horizontal = topCell->position.x / CELL_WIDTH;
+                vertical = topCell->position.y / CELL_HEIGHT;
             }
             else
             {
                 finished = true;
+                break; // Exit loop immediately
             }
         }
     }
