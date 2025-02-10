@@ -1,4 +1,5 @@
 @echo off
+color 2
 setlocal enabledelayedexpansion
 set "SOURCES="
 set "OBJECTS="

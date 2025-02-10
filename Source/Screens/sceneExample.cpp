@@ -66,7 +66,13 @@ void sceneExample::Update()
     if (generationWindow)
     {
         ImGui::Begin("meow", &generationWindow);
-        ImGui::Text("hola");
+        ImGui::Text("Generate");
+        ImGui::SameLine();
+        if (ImGui::Button("Generate"))
+        {
+            maze.reset();
+            maze = std::make_unique<MazeGenerator>();
+        }
         ImGui::End();
     }
 
