@@ -14,6 +14,7 @@ sceneExample::~sceneExample()
 void sceneExample::Update()
 {
     player->Update(*maze);
+    contreras->localizatePlayer(*player, *maze);
     contreras->Chase(player.get());
     contreras->Update();
 

@@ -29,8 +29,8 @@ void Contreras::clampsito(){
 	int relative_position_x = CELL_WIDTH * MATRIX_DIMENSION - position.w * 2; 
 	int relative_position_y = CELL_WIDTH * MATRIX_DIMENSION - position.h * 2; 
 
-	position.x = std::clamp((position.x), 0, relative_position_x);
-	position.y = std::clamp((position.y), 0, relative_position_y);
+	position.x = std::clamp(position.x, position.w, relative_position_x + position.w);
+	position.y = std::clamp(position.y, relative_position_y - position.h, position.h);
 	// std::cout<<position.x<< " : " <<position.y << "\n";
 
 }
@@ -161,4 +161,12 @@ void Contreras::Chase(Player* player)
 bool Contreras::ChaseCheck(float x, float y, float x_c, float y_c)
 {
 	return std::abs(x - x_c) <= 20 && std::abs(y - y_c) <= 20;
+}
+
+void Contreras::localizatePlayer(Player& player, MazeGenerator& maze)
+{
+
+	&maze.cellMatrix[player.position.x][player.position.y];
+	std::cout << "&maze.cellMatrix[player.position.x][player.position.y]" << " : " << &maze.cellMatrix[player.position.x][player.position.y] << std::endl;
+
 }

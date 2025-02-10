@@ -25,8 +25,10 @@ public:
 	void Update();
     void Render(Camera& camera);
 	void Chase(Player* player);
+	void localizatePlayer(Player& player, MazeGenerator& maze);
 	bool ChaseCheck(float x, float y, float x_c, float y_c);
 	int Cuadrante;
+	std::vector<int> Perseguir = {};
 
 private:
 	void Movement();
