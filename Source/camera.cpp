@@ -16,6 +16,6 @@ void Camera::Update()
 	int widthLimit = CELL_WIDTH * MATRIX_DIMENSION;
 	int heightLimit = CELL_HEIGHT * MATRIX_DIMENSION;
 	position.x = std::clamp(position.x, -position.w, widthLimit-position.w);
-	position.y = std::clamp(position.y, -position.h, heightLimit-position.h);
+	position.y = std::clamp(position.y, -position.h / 2, heightLimit-position.h);
 	//std::cout << position.y << "\n";
 }
