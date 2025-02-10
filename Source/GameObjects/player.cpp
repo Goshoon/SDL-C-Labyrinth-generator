@@ -4,26 +4,24 @@ Player::Player() // Contructor por defecto
 {
 	position.x = 0;
 	position.y = 0;
-	position.w = 12;
-	position.h = 12;
+	position.w = 24;
+	position.h = 24;
 }
 
 Player::Player(int x, int y) // Constructor a posicion
 {
 	position.x = x;
 	position.y = y;
-	position.w = 12;
-	position.h = 12;
+	position.w = 24;
+	position.h = 24;
 }
 
 void Player::Update(MazeGenerator& maze)
 {
-	Input();
 	clampsito();
 	int x = position.x / CELL_WIDTH;
 	int y = position.y / CELL_WIDTH;
 
-	std::cout << position.x << " : " << x << "\n";
 	cell = &maze.cellMatrix[x][y];
 
 	float desplazamiento = 2.0f;
@@ -52,47 +50,16 @@ void Player::Update(MazeGenerator& maze)
 	{
 		position.x = position.x + desplazamiento;
 	}
-
-/*
-	desplazamiento = 1.0f;
-	if(app->mover_abajo && app->mover_izquierda)
-	{
-		position.x = position.x - (desplazamiento * 0.02);
-		position.y = position.y + (desplazamiento * 0.02);
-	}
-
-	if(app->mover_abajo && app->mover_derecha)
-	{
-		position.x = position.x + (desplazamiento * 0.02);
-		position.y = position.y + (desplazamiento * 0.02);
-	}
-
-	if(app->mover_arriba && app->mover_derecha)
-	{
-		position.x = position.x + (desplazamiento * 0.02);
-		position.y = position.y - (desplazamiento * 0.02);
-	}
-
-	if(app->mover_arriba && app->mover_izquierda)
-	{
-		position.x = position.x - (desplazamiento * 0.02);
-		position.y = position.y - (desplazamiento * 0.02);
-	}
-
-*/
 }
 
 void Player::Render(Camera& camera)
 {
-	SDL_Color outlineColor = { 0, 0, 0, 255 };
-	SDL_Color blue = { 0, 0, 255, 255 };
-	app->DrawRectangle(camera, cell->position.x, cell->position.y, cell->position.w, cell->position.h, blue);
-	app->DrawRectangle(camera, position.x, position.y, 24, 24, outlineColor);
-}
-
-void Player::Input()
-{
-	
+	SDL_Color playerColor = { 0, 0, 0, 255 };
+	SDL_Color playerShadow = { 0, 0, 0, 100 };
+	//SDL_Color cellColor = { 0, 0, 185, 25 };
+	//app->DrawRectangle(camera, cell->position.x, cell->position.y, cell->position.w, cell->position.h, cellColor);
+	app->DrawRectangle(camera, position.x+4, position.y+4, position.w, position.h, playerShadow);
+	app->DrawRectangle(camera, position.x, position.y, position.w, position.h, playerColor);
 }
 
 void Player::clampsito(){
