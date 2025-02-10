@@ -37,8 +37,10 @@ void Contreras::clampsito(){
 
 void Contreras::Render(Camera& camera) // Posicion en pantalla = posicion + posicion_camara
 {
-	SDL_Color outlineColor = { 255, 0, 0, 255 }; 
-	app->DrawRectangle(camera, position.x, position.y, 24, 24, outlineColor);
+	SDL_Color entityColor = { 255, 0, 0, 255 }; 
+	SDL_Color entityShadow = { 255, 0, 0, 100 };
+	app->DrawRectangle(camera, position.x+4, position.y+4, 24, 24, entityShadow);
+	app->DrawRectangle(camera, position.x, position.y, 24, 24, entityColor);
 }
 
 void Contreras::Movement()
@@ -56,9 +58,7 @@ void Contreras::Movement()
 
 		if(probabilidad > 5)
 		{
-
 			position.x = position.x + desplazamiento;
-			
 		}
 		else
 		{
@@ -70,9 +70,7 @@ void Contreras::Movement()
 	{
 		if(probabilidad < -5)
 		{
-
 			position.x = position.x - desplazamiento;
-			
 		}
 		else
 		{
@@ -85,22 +83,6 @@ void Contreras::Movement()
 
 void Contreras::Chase(Player* player)
 {
-/*
-	std::cout << "player_coordinates: " << player->position.x << ", " << player->position.y << "\n";
-	std::cout << "contreras_coordinates: " << position.x << ", " << position.y << "\n";
-*/
-	/*
-	if(ChaseCheck(position.x, position.y, player->position.x, player->position.y ))
-	{
-		//std::cout << "you got it";
-		return;
-	}
-	*/
-
-	// float desplazamiento = 2.0f;
-
-	// std::cout << "probabilidad: " << probabilidad << "\n";
-
 	float diference_x = 0.00f;
 	float diference_y = 0.00f;
 	diference_x = player->position.x - position.x;
@@ -124,34 +106,25 @@ void Contreras::Chase(Player* player)
 
 		if(player->position.x > position.x)
 		{
-
 			position.x += desplazamiento;
-
 		}
 
 		if(player->position.x < position.x)
 		{
-
 			position.x -= desplazamiento;
-
 		}
-	
 	}
 	else
 	{
 
 		if(player->position.y > position.y)
 		{
-
 			position.y += desplazamiento;
-
 		}
 		
 		if(player->position.y < position.y)
 		{
-
 			position.y -= desplazamiento;
-
 		}
 
 	}

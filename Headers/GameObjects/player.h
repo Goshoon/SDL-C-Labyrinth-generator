@@ -26,7 +26,5 @@ public:
 	void Update(MazeGenerator& maze);
 	void Render(Camera& camera);
 private:
-	void Input();
 	void clampsito();
-	
 };

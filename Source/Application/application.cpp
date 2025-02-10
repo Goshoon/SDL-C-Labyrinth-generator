@@ -25,7 +25,8 @@ Application::Application()
 		window, -1, SDL_RENDERER_SOFTWARE  /* Cambiar SDL_RENDERER_ACCELERATED -> SDL_RENDERER_ACCELERATED  Para usar GPU */
 	);
 	
-	SDL_SetWindowMinimumSize(window, 800, 600);
+	SDL_SetWindowMinimumSize(window, 800, 640);
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	SDL_RenderSetScale(renderer, RENDER_SCALE, RENDER_SCALE);
 
 	done = false;
