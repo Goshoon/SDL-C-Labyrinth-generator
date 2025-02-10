@@ -4,16 +4,16 @@ Contreras::Contreras() // Contructor por defecto
 {
 	position.x = 0;
 	position.y = 0;
-	position.w = 12;
-	position.h = 12;
+	position.w = 24;
+	position.h = 24;
 }
 
 Contreras::Contreras(int x, int y) // Constructor a posicion
 {
 	position.x = x;
 	position.y = y;
-	position.w = 12;
-	position.h = 12;
+	position.w = 24;
+	position.h = 24;
 }
 
 void Contreras::Update()
@@ -30,17 +30,15 @@ void Contreras::clampsito(){
 	int relative_position_y = CELL_WIDTH * MATRIX_DIMENSION - position.h * 2; 
 
 	position.x = std::clamp(position.x, position.w, relative_position_x + position.w);
-	position.y = std::clamp(position.y, relative_position_y - position.h, position.h);
-	// std::cout<<position.x<< " : " <<position.y << "\n";
-
+	position.y = std::clamp(position.y, position.h, relative_position_y - position.h);
 }
 
 void Contreras::Render(Camera& camera) // Posicion en pantalla = posicion + posicion_camara
 {
 	SDL_Color entityColor = { 255, 0, 0, 255 }; 
 	SDL_Color entityShadow = { 255, 0, 0, 100 };
-	app->DrawRectangle(camera, position.x+4, position.y+4, 24, 24, entityShadow);
-	app->DrawRectangle(camera, position.x, position.y, 24, 24, entityColor);
+	app->DrawRectangle(camera, position.x+4, position.y+4, position.w, position.h, entityShadow);
+	app->DrawRectangle(camera, position.x, position.y, position.w, position.h, entityColor);
 }
 
 void Contreras::Movement()
@@ -51,11 +49,8 @@ void Contreras::Movement()
     int probabilidad = (rand() % 21) - 10; 
 	float desplazamiento = 2.0f;
 
-	// std::cout<<"Probabilidad", probabilidad;
-
 	if(probabilidad > 0)
 	{
-
 		if(probabilidad > 5)
 		{
 			position.x = position.x + desplazamiento;
@@ -64,7 +59,6 @@ void Contreras::Movement()
 		{
 			position.y = position.y - desplazamiento;
 		}
-
 	}
 	else
 	{
@@ -83,12 +77,10 @@ void Contreras::Movement()
 
 void Contreras::Chase(Player* player)
 {
-	float diference_x = 0.00f;
-	float diference_y = 0.00f;
+	float diference_x = 0.50f;
+	float diference_y = 0.50f;
 	diference_x = player->position.x - position.x;
 	diference_y = player->position.y - position.y;
-
-	// std::cout << "diferencias: " << diference_x << ", " << diference_y << "\n";
 
 	if(diference_x < 1)
 	{
@@ -138,8 +130,6 @@ bool Contreras::ChaseCheck(float x, float y, float x_c, float y_c)
 
 void Contreras::localizatePlayer(Player& player, MazeGenerator& maze)
 {
-
-	&maze.cellMatrix[player.position.x][player.position.y];
-	std::cout << "&maze.cellMatrix[player.position.x][player.position.y]" << " : " << &maze.cellMatrix[player.position.x][player.position.y] << std::endl;
-
+	//&maze.cellMatrix[player.position.x][player.position.y];
+	//std::cout << "&maze.cellMatrix[player.position.x][player.position.y]" << " : " << &maze.cellMatrix[player.position.x][player.position.y] << std::endl;
 }
