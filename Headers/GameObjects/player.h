@@ -27,4 +27,6 @@ public:
 	void Render(Camera& camera);
 private:
 	void clampsito();
+	short horizontalMove, verticalMove;
+	short horizontalSpeed, verticalSpeed, moveSpeed, runSpeed;
 };

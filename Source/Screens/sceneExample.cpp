@@ -3,7 +3,7 @@
 sceneExample::sceneExample()
 {
 	std::cout << "Created scene!\n";
-    generationWindow = true;
+    generationWindow = false;
 }
 
 sceneExample::~sceneExample()

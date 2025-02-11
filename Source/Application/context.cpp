@@ -14,7 +14,7 @@ void Inititialize() // Iniciar SDL y SDL_Image
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
-    ImGui::StyleColorsDark(); // Tema
+    ImGui::StyleColorsClassic(); // Tema
 
     // Setup Platform/Renderer backends
     ImGui_ImplSDL2_InitForSDLRenderer(app->window, app->renderer);

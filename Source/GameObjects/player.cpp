@@ -6,6 +6,12 @@ Player::Player() // Contructor por defecto
 	position.y = 0;
 	position.w = 24;
 	position.h = 24;
+	horizontalMove = false;
+	verticalMove = false;
+	horizontalSpeed = 0;
+	verticalSpeed = 0;
+	moveSpeed = 3;
+	runSpeed = 1;
 }
 
 Player::Player(int x, int y) // Constructor a posicion
@@ -14,50 +20,79 @@ Player::Player(int x, int y) // Constructor a posicion
 	position.y = y;
 	position.w = 24;
 	position.h = 24;
+	horizontalMove = false;
+	verticalMove = false;
+	horizontalSpeed = 0;
+	verticalSpeed = 0;
+	moveSpeed = 3;
+	runSpeed = 1;
 }
 
 void Player::Update(MazeGenerator& maze)
 {
 	clampsito();
+
+	/* Actualizar celda actual del jugador */
 	int x = position.x / CELL_WIDTH;
 	int y = position.y / CELL_WIDTH;
-
 	cell = &maze.cellMatrix[x][y];
 
-	float desplazamiento = 2.0f;
+	/* Dirección de jugador */
+	horizontalMove = (app->mover_derecha ? 1 : 0) - (app->mover_izquierda ? 1 : 0);
+	verticalMove = (app->mover_abajo ? 1 : 0) - (app->mover_arriba ? 1 : 0);
+
+	/* Velocidad de movimiento */
+	horizontalSpeed = (app->dash * runSpeed + moveSpeed) * horizontalMove;
+	verticalSpeed = (app->dash * runSpeed + moveSpeed) * verticalMove;
+
+
+	/* Crear área de colisión (hitbox) para revisar colisión en el eje horizontal */
+	SDL_Rect horizontalCheck = position;
+	horizontalCheck.x += horizontalSpeed;
+
+	if (horizontalMove != 0)  // Revisar colision si hay movimiento
+	{
+		if ((horizontalMove < 0 && Collide(horizontalCheck, cell->left)) || 	// Revisar collision en paredes horizontales
+		    (horizontalMove > 0 && Collide(horizontalCheck, cell->right)))
+		{
+			/*
+			horizontalCheck.x -= horizontalSpeed;
+			horizontalCheck.x += horizontalMove;
+			while (!Collide(horizontalCheck, (horizontalMove < 0) ? cell->left : cell->right)) // Acercar a pared en (1 o -1) unidades
+				position.x += horizontalMove;
+			*/
+			horizontalSpeed = 0;
+		}
+	}
 	
-	if(app->dash)
+
+	/* Crear área de colisión (hitbox) para revisar colisión en el eje vertical */
+	SDL_Rect verticalCheck = position;
+	verticalCheck.y += verticalSpeed;
+
+	if (verticalMove != 0) // Revisar colision si hay movimiento
 	{
-		desplazamiento = 3.0f;
+		if ((verticalMove < 0 && Collide(verticalCheck, cell->top)) || 			// Revisar collision en paredes verticales
+		    (verticalMove > 0 && Collide(verticalCheck, cell->bottom))) 
+		{
+			/*
+			verticalCheck.y -= verticalSpeed;
+			verticalCheck.y += verticalMove;
+			while (!Collide(verticalCheck, (verticalMove < 0) ? cell->top : cell->bottom)) // Acercar a pared en (1 o -1) unidades
+				position.y += verticalMove;
+			*/
+			verticalSpeed = 0;
+		}
 	}
 
-	if(app->mover_arriba && Collide(position, cell->top) == false)
-	{
-		position.y = position.y - desplazamiento;
-	}
-
-	if(app->mover_abajo && Collide(position, cell->bottom) == false)
-	{
-		position.y = position.y + desplazamiento;
-	}
-
-	if(app->mover_izquierda && Collide(position, cell->left) == false)
-	{
-		position.x = position.x - desplazamiento;
-	}
-
-	if(app->mover_derecha && Collide(position, cell->right) == false)
-	{
-		position.x = position.x + desplazamiento;
-	}
+	position.x += horizontalSpeed;
+	position.y += verticalSpeed;
 }
 
 void Player::Render(Camera& camera)
 {
 	SDL_Color playerColor = { 0, 0, 0, 255 };
 	SDL_Color playerShadow = { 0, 0, 0, 100 };
-	//SDL_Color cellColor = { 0, 0, 185, 25 };
-	//app->DrawRectangle(camera, cell->position.x, cell->position.y, cell->position.w, cell->position.h, cellColor);
 	app->DrawRectangle(camera, position.x+4, position.y+4, position.w, position.h, playerShadow);
 	app->DrawRectangle(camera, position.x, position.y, position.w, position.h, playerColor);
 }

@@ -18,7 +18,7 @@ public:
 	sceneExample();
 	~sceneExample();
 
-	bool generationWindow;
+	bool generationWindow = false;
 	
 	void Update() override;
 	void Render() override;

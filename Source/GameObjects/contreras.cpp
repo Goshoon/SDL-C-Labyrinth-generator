@@ -81,7 +81,7 @@ void Contreras::Chase(Player* player)
 	float diference_y = 0.50f;
 	diference_x = player->position.x - position.x;
 	diference_y = player->position.y - position.y;
-
+	
 	if(diference_x < 1)
 	{
 		diference_x = -(diference_x); 
