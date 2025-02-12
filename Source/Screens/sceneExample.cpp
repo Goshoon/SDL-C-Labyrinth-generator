@@ -65,7 +65,8 @@ void sceneExample::Update()
 
     if (generationWindow)
     {
-        ImGui::Begin("meow", &generationWindow);
+        ImGui::SetNextWindowSize(ImVec2(250, 65));
+        ImGui::Begin("meow", &generationWindow, ImGuiWindowFlags_NoResize);
         ImGui::Text("Generate");
         ImGui::SameLine();
         if (ImGui::Button("Generate"))

@@ -5,6 +5,7 @@
 #include "cell.h"
 #include "MazeGenerator.h"
 #include "collision.h"
+#include "entity.h"
 
 #include "SDL.h"
 
@@ -14,13 +15,13 @@
 
 extern std::unique_ptr<Application> app;
 
-class Player
+class Player : public Entity
 {
 
 public:
 	Player();
 	Player(int x, int y);
-	SDL_Rect position;
+	SDL_Rect position, sprite;
 	Cell* cell;
 
 	void Update(MazeGenerator& maze);

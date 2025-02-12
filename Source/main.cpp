@@ -3,7 +3,7 @@ using std::cout, std::cin, std::shared_ptr, std::unique_ptr, std::make_unique;
 
 TTF_Font* font;
 unique_ptr<Application> app = make_unique<Application>(); /* Crear una instancia de la aplicacion (ventana + render) y que sea global*/
-
+unique_ptr<Screen> currentScreen = make_unique<MainMenu>(); /* Crear escena inicial */
 int fps = 144;
 int desiredDelta = 1000 / fps;
 
@@ -11,9 +11,6 @@ int main(int argc, char* argv[])
 {
 	// Inicializar SDL2 & ImGui
 	Inititialize();
-
-	// Crear escena inicial
-	unique_ptr<Screen> currentScreen = make_unique<sceneExample>();
 
 	while(!app->done) /* Ciclo loop */
 	{
