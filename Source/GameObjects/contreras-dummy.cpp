@@ -43,95 +43,23 @@ void Contreras::Render(Camera& camera) // Posicion en pantalla = posicion + posi
 	app->DrawRectangle(camera, position.x, position.y, position.w, position.h, entityColor);
 }
 
-void Contreras::Movement()
-{
-
-    srand(time(0)); // Inicializar la semilla aleatoria
-
-    int probabilidad = (rand() % 21) - 10; 
-	float desplazamiento = 2.0f;
-
-	if(probabilidad > 0)
-	{
-		if(probabilidad > 5)
-		{
-			position.x = position.x + desplazamiento;
-		}
-		else
-		{
-			position.y = position.y - desplazamiento;
-		}
-	}
-	else
-	{
-		if(probabilidad < -5)
-		{
-			position.x = position.x - desplazamiento;
-		}
-		else
-		{
-			position.y = position.y + desplazamiento;
-		}
-	}
-	
-
-}
-
-void Contreras::Chase(Player* player)
-{
-	float diference_x = 0.50f;
-	float diference_y = 0.50f;
-	diference_x = player->position.x - position.x;
-	diference_y = player->position.y - position.y;
-	
-	if(diference_x < 1)
-	{
-		diference_x = -(diference_x); 
-	}
-
-	if(diference_y < 1)
-	{
-		diference_y = -(diference_y);
-	}
-
-	float desplazamiento = 2.0f;
-	if(diference_x > diference_y)
-	{
-
-		if(player->position.x > position.x)
-		{
-			position.x += desplazamiento;
-		}
-
-		if(player->position.x < position.x)
-		{
-			position.x -= desplazamiento;
-		}
-	}
-	else
-	{
-
-		if(player->position.y > position.y)
-		{
-			position.y += desplazamiento;
-		}
-		
-		if(player->position.y < position.y)
-		{
-			position.y -= desplazamiento;
-		}
-
-	}
-
-}
-
 void Contreras::ChaseColide(Player& player, MazeGenerator& maze)
 {
 
-	float diference_x = 0.50f;
-	float diference_y = 0.50f;
+	float diference_x = 0.00f;
+	float diference_y = 0.00f;
+
+	float diference_x_aux = 0.00f;
+	float diference_y_aux = 0.00f;
+
 	diference_x = player.position.x - position.x;
 	diference_y = player.position.y - position.y;
+
+
+    if(cuadrante != 0){
+
+        
+    }
 
 	if(diference_x < 1)
 	{
@@ -157,6 +85,12 @@ void Contreras::ChaseColide(Player& player, MazeGenerator& maze)
 			position.x -= desplazamiento;
 		}
 	}
+    else if(diference_x == diference_y)
+    {
+
+
+        
+    }
 	else
 	{
 
@@ -173,11 +107,6 @@ void Contreras::ChaseColide(Player& player, MazeGenerator& maze)
 	}
 
 
-}
-
-bool Contreras::ChaseCheck(float x, float y, float x_c, float y_c)
-{
-	return std::abs(x - x_c) <= 20 && std::abs(y - y_c) <= 20;
 }
 
 void Contreras::localizate(Camera& camera, MazeGenerator& maze)
