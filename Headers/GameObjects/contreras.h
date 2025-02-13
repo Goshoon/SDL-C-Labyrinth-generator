@@ -4,9 +4,6 @@
 #include "camera.h"
 #include "SDL.h"
 #include "player.h"
-#include "cell.h"
-#include "mazeGenerator.h"
-#include "collision.h"
 
 #include <memory>
 #include <cmath>
@@ -28,14 +25,9 @@ public:
 	void Update();
     void Render(Camera& camera);
 	void Chase(Player* player);
-	void localizate(Camera&, MazeGenerator& maze);
+	void localizatePlayer(Player& player, MazeGenerator& maze);
 	bool ChaseCheck(float x, float y, float x_c, float y_c);
-
-	void ChaseColide(Player& player, MazeGenerator& maze);
-
-	float cuadrante = 0.00f;
-	char eje_cuadrante;
-	Cell* cell;
+	int Cuadrante;
 	std::vector<int> Perseguir = {};
 
 private:

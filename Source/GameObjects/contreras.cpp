@@ -37,8 +37,6 @@ void Contreras::Render(Camera& camera) // Posicion en pantalla = posicion + posi
 {
 	SDL_Color entityColor = { 255, 0, 0, 255 }; 
 	SDL_Color entityShadow = { 255, 0, 0, 100 };
-	SDL_Color cellColor = { 0, 0, 185, 25 };
-	app->DrawRectangle(camera, cell->position.x, cell->position.y, cell->position.w, cell->position.h, cellColor);
 	app->DrawRectangle(camera, position.x+4, position.y+4, position.w, position.h, entityShadow);
 	app->DrawRectangle(camera, position.x, position.y, position.w, position.h, entityColor);
 }
@@ -125,64 +123,13 @@ void Contreras::Chase(Player* player)
 
 }
 
-void Contreras::ChaseColide(Player& player, MazeGenerator& maze)
-{
-
-	float diference_x = 0.50f;
-	float diference_y = 0.50f;
-	diference_x = player.position.x - position.x;
-	diference_y = player.position.y - position.y;
-
-	if(diference_x < 1)
-	{
-		diference_x = -(diference_x); 
-	}
-
-	if(diference_y < 1)
-	{
-		diference_y = -(diference_y);
-	}
-
-	float desplazamiento = 2.0f;
-	if(diference_x > diference_y)
-	{
-
-		if(player.position.x > position.x)
-		{
-			position.x += desplazamiento;
-		}
-
-		if(player.position.x < position.x)
-		{
-			position.x -= desplazamiento;
-		}
-	}
-	else
-	{
-
-		if(player.position.y > position.y)
-		{
-			position.y += desplazamiento;
-		}
-		
-		if(player.position.y < position.y)
-		{
-			position.y -= desplazamiento;
-		}
-
-	}
-
-
-}
-
 bool Contreras::ChaseCheck(float x, float y, float x_c, float y_c)
 {
 	return std::abs(x - x_c) <= 20 && std::abs(y - y_c) <= 20;
 }
 
-void Contreras::localizate(Camera& camera, MazeGenerator& maze)
+void Contreras::localizatePlayer(Player& player, MazeGenerator& maze)
 {
-	int x = position.x / CELL_WIDTH;
-	int y = position.y / CELL_HEIGHT;
-	cell = &maze.cellMatrix[x][y];
+	//&maze.cellMatrix[player.position.x][player.position.y];
+	//std::cout << "&maze.cellMatrix[player.position.x][player.position.y]" << " : " << &maze.cellMatrix[player.position.x][player.position.y] << std::endl;
 }
