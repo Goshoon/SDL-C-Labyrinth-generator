@@ -25,8 +25,7 @@ void MazeGenerator::GenerateCells()
 
 void MazeGenerator::GenerateMaze()
 {
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(static_cast<unsigned int>(std::time(nullptr)));
     std::uniform_int_distribution<> dis(0, MATRIX_DIMENSION - 1);
 
     int horizontal = dis(gen);

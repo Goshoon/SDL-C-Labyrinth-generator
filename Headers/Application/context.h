@@ -9,6 +9,7 @@
 #include "imgui_impl_sdlrenderer2.h"
 
 #include "application.h"
+
 extern std::unique_ptr<Application> app;
 extern TTF_Font* font;
 
@@ -16,6 +17,7 @@ extern TTF_Font* font;
 #define CONTEXT_H
 
 void Inititialize();
+void LoadTextures();
 void Quit();
 
 #endif

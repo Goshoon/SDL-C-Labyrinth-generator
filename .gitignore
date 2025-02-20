@@ -3,9 +3,12 @@
 *.exe
 *.a
 *.ini
+*.sublime-project
+*.sublime-workspace
+imgui.ini
 
 # Ignorar folder
 /Dependencies/
 /Bin/
 /.vscode/
-imgui.ini
+/Bin/Resources/

@@ -6,6 +6,7 @@
 #include "MazeGenerator.h"
 #include "collision.h"
 #include "entity.h"
+#include "math.h"
 
 #include "SDL.h"
 
@@ -21,13 +22,12 @@ class Player : public Entity
 public:
 	Player();
 	Player(int x, int y);
-	SDL_Rect position, sprite;
-	Cell* cell;
-
+	
 	void Update(MazeGenerator& maze);
 	void Render(Camera& camera);
 private:
-	void clampsito();
-	short horizontalMove, verticalMove;
-	short horizontalSpeed, verticalSpeed, moveSpeed, runSpeed;
+	Cell* cell;
+	void LoockOnLevel();
+	int horizontalMove, verticalMove;
+	int horizontalSpeed, verticalSpeed, moveSpeed, runSpeed;
 };

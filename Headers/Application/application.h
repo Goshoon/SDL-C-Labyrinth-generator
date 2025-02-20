@@ -6,6 +6,7 @@
 
 #include "camera.h"
 #include "define.h"
+#include "entity.h"
 
 #include "SDL.h"
 #include "SDL_image.h"
@@ -48,6 +49,8 @@ public:
 	void DrawRectangle(Camera& camera, int x, int y, int width, int height, SDL_Color color);
 	void RenderImage( SDL_Texture* image, int x, int y );
 	void RenderImage( SDL_Texture* image, int x, int y, int w, int h );
+	void RenderEntity(Entity& entity);
+	void RenderEntity(Camera& camera, Entity& entity);
 	void RenderText(const char* toRenderText);
 	void CalculateZoom(Camera& camera);
 private:

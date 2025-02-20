@@ -5,10 +5,16 @@ class Entity
 {
 public:
 	Entity();
-	short frame;
+	Entity(int x, int y);
+	
+	int frame, maxframes;
+	double angle;
+	SDL_RendererFlip flip;
+	const SDL_Point* offset;
 	SDL_Texture* spritesheet;
 	SDL_Rect position, sprite;
 
 	void Update();
 	void Render();
+	void Animate();
 };

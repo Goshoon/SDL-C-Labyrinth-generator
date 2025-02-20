@@ -19,6 +19,8 @@ void Inititialize() // Iniciar SDL y SDL_Image
     // Setup Platform/Renderer backends
     ImGui_ImplSDL2_InitForSDLRenderer(app->window, app->renderer);
     ImGui_ImplSDLRenderer2_Init(app->renderer);
+
+    LoadTextures();
 }
 void Quit() // Cerrar aplicacion
 {
@@ -31,4 +33,9 @@ void Quit() // Cerrar aplicacion
     TTF_Quit();
     IMG_Quit();
 	SDL_Quit();
+}
+
+void LoadTextures() // Cargar todas las imagenes con ("Identificador", "Ruta del archivo")
+{
+    app->AddTexture("Player", "Resources/Images/rat.png");
 }

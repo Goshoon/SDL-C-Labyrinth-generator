@@ -1,36 +1,53 @@
 #include "player.h"
 
 Player::Player() // Contructor por defecto
+	:Entity()
 {
-	position.x = 0;
-	position.y = 0;
-	position.w = 24;
-	position.h = 24;
+	spritesheet = app->GetTexture("Player");
+	if (spritesheet == nullptr)
+        std::cerr << "Failed to load player texture!" << std::endl;
+
+	position.w = 64;
+    position.h = 64;
+    //offset.x = position.w/2;
+    //offset.y = position.h/2;
 	horizontalMove = false;
 	verticalMove = false;
 	horizontalSpeed = 0;
 	verticalSpeed = 0;
 	moveSpeed = 3;
 	runSpeed = 1;
+
+	SDL_QueryTexture(spritesheet, NULL, NULL, &maxframes, NULL);
+	maxframes = maxframes / sprite.w;
 }
 
 Player::Player(int x, int y) // Constructor a posicion
+	:Entity(x, y)
 {
-	position.x = x;
-	position.y = y;
-	position.w = 24;
-	position.h = 24;
+	spritesheet = app->GetTexture("Player");
+	if (spritesheet == nullptr) {
+        std::cerr << "Failed to load player texture!" << std::endl;
+    }
+
+    position.w = 64;
+    position.h = 64;
+    //offset.x = position.w/2;
+    //offset.y = position.h/2;
 	horizontalMove = false;
 	verticalMove = false;
 	horizontalSpeed = 0;
 	verticalSpeed = 0;
 	moveSpeed = 3;
 	runSpeed = 1;
+
+	SDL_QueryTexture(spritesheet, NULL, NULL, &maxframes, NULL);
+	maxframes = maxframes / sprite.w;
 }
 
 void Player::Update(MazeGenerator& maze)
 {
-	clampsito();
+	LoockOnLevel();
 
 	/* Actualizar celda actual del jugador */
 	int x = position.x / CELL_WIDTH;
@@ -84,6 +101,11 @@ void Player::Update(MazeGenerator& maze)
 			verticalSpeed = 0;
 		}
 	}
+	if (horizontalMove != 0)
+		flip = ( horizontalMove > 0 ) ? SDL_FLIP_NONE : SDL_FLIP_HORIZONTAL;
+
+	if (verticalMove != 0 || horizontalMove != 0)
+		Animate();
 
 	position.x += horizontalSpeed;
 	position.y += verticalSpeed;
@@ -91,16 +113,13 @@ void Player::Update(MazeGenerator& maze)
 
 void Player::Render(Camera& camera)
 {
-	SDL_Color playerColor = { 0, 0, 0, 255 };
-	SDL_Color playerShadow = { 0, 0, 0, 100 };
-	app->DrawRectangle(camera, position.x+4, position.y+4, position.w, position.h, playerShadow);
-	app->DrawRectangle(camera, position.x, position.y, position.w, position.h, playerColor);
+	app->RenderEntity(camera, *this);
 }
 
-void Player::clampsito(){
+void Player::LoockOnLevel(){
 
-	int relative_position_x = CELL_WIDTH * MATRIX_DIMENSION - position.w * 2; 
-	int relative_position_y = CELL_HEIGHT * MATRIX_DIMENSION - position.h * 2; 
+	int relative_position_x = CELL_WIDTH * MATRIX_DIMENSION - position.w * 0.5; 
+	int relative_position_y = CELL_HEIGHT * MATRIX_DIMENSION - position.h * 0.5; 
 
 	position.x = std::clamp((position.x), 0, relative_position_x);
 	position.y = std::clamp((position.y), 0, relative_position_y);

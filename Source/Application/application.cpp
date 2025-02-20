@@ -1,18 +1,5 @@
 #include "application.h"
 
-void Application::AddTexture(const std::string& ID, const char* fileDir)
-{
-	SDL_Texture* texture = IMG_LoadTexture(renderer, fileDir);
-	images[ID] = texture;
-}
-
-SDL_Texture* Application::GetTexture(const std::string& ID) 
-{
-	auto it = images.find(ID);
-	return it != images.end() ? it->second : nullptr;
-	std::cout << images.size();
-}
-
 Application::Application()
 {
 	window = SDL_CreateWindow(
@@ -50,6 +37,21 @@ Application::~Application()
 	{
 		SDL_DestroyTexture(pair.second);
 	}
+}
+
+void Application::AddTexture(const std::string& ID, const char* fileDir)
+{
+	SDL_Texture* texture = IMG_LoadTexture(renderer, fileDir);
+	images[ID] = texture;
+	if (texture != nullptr)
+		std::cout << "image loaded!" << "\n";
+}
+
+SDL_Texture* Application::GetTexture(const std::string& ID)
+{
+	auto it = images.find(ID);
+	std::cout << images.size();
+	return it != images.end() ? it->second : nullptr;
 }
 
 void Application::Display()
@@ -197,7 +199,6 @@ void Application::DrawRectangle(Camera& camera, int x, int y, int width, int hei
     SDL_RenderFillRect(renderer, &squareRect);
 }
 
-
 void Application::RenderImage( SDL_Texture* image, int x, int y )
 {
 	int width, height;
@@ -209,6 +210,25 @@ void Application::RenderImage( SDL_Texture* image, int x, int y )
 void Application::RenderImage( SDL_Texture* image, int x, int y, int w, int h )
 {
 	SDL_Rect dst = { x, y, w, h };
+}
+
+void Application::RenderEntity(Entity& entity)
+{
+	SDL_RenderCopy(renderer, entity.spritesheet, &entity.sprite, &entity.position);
+}
+
+void Application::RenderEntity(Camera& camera, Entity& entity)
+{
+    SDL_Rect dest;
+    dest.x = entity.position.x - camera.position.x;
+    dest.y = entity.position.y - camera.position.y;
+    dest.w = entity.position.w;
+    dest.h = entity.position.h;
+
+    //std::cout << "1 ( x, y ) :" << entity.position.x << " : " << entity.position.y << "\n";
+    //SDL_RenderCopy(renderer, entity.spritesheet, &entity.sprite, &dest);
+    //SDL_Point point = { 0, 0 };
+    SDL_RenderCopyEx(renderer, entity.spritesheet, &entity.sprite, &dest, entity.angle, entity.offset, entity.flip);
 }
 
 void Application::RenderText(const char* toRenderText)

@@ -43,7 +43,6 @@ void Contreras::Render(Camera& camera) // Posicion en pantalla = posicion + posi
 
 void Contreras::Movement()
 {
-
     srand(time(0)); // Inicializar la semilla aleatoria
 
     int probabilidad = (rand() % 21) - 10; 
