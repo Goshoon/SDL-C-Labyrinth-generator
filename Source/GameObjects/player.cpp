@@ -9,8 +9,8 @@ Player::Player() // Contructor por defecto
 
 	position.w = 64;
     position.h = 64;
-    //offset.x = position.w/2;
-    //offset.y = position.h/2;
+    offset.x = position.w/2;
+    offset.y = position.h/2;
 	horizontalMove = false;
 	verticalMove = false;
 	horizontalSpeed = 0;
@@ -32,8 +32,8 @@ Player::Player(int x, int y) // Constructor a posicion
 
     position.w = 64;
     position.h = 64;
-    //offset.x = position.w/2;
-    //offset.y = position.h/2;
+    offset.x = position.w/2;
+    offset.y = position.h/2;
 	horizontalMove = false;
 	verticalMove = false;
 	horizontalSpeed = 0;
@@ -101,8 +101,15 @@ void Player::Update(MazeGenerator& maze)
 			verticalSpeed = 0;
 		}
 	}
-	if (horizontalMove != 0)
-		flip = ( horizontalMove > 0 ) ? SDL_FLIP_NONE : SDL_FLIP_HORIZONTAL;
+
+	if (app->mover_derecha)
+		angle = 0.0 + (45 * app->mover_arriba) - (45 * app->mover_abajo);
+	if (app->mover_izquierda)
+		angle = 180.0 + (45 * app->mover_arriba) - (45 * app->mover_abajo);
+	if (app->mover_abajo)
+		angle = 90 - (45 * app->mover_derecha) + (45 * app->mover_izquierda);
+	if (app->mover_arriba)
+		angle = 270 + (45 * app->mover_derecha) - (45 * app->mover_izquierda);
 
 	if (verticalMove != 0 || horizontalMove != 0)
 		Animate();

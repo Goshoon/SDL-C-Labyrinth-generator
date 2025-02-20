@@ -227,8 +227,8 @@ void Application::RenderEntity(Camera& camera, Entity& entity)
 
     //std::cout << "1 ( x, y ) :" << entity.position.x << " : " << entity.position.y << "\n";
     //SDL_RenderCopy(renderer, entity.spritesheet, &entity.sprite, &dest);
-    //SDL_Point point = { 0, 0 };
-    SDL_RenderCopyEx(renderer, entity.spritesheet, &entity.sprite, &dest, entity.angle, entity.offset, entity.flip);
+    const SDL_Point* offset = &entity.offset;
+    SDL_RenderCopyEx(renderer, entity.spritesheet, &entity.sprite, &dest, entity.angle, offset, entity.flip);
 }
 
 void Application::RenderText(const char* toRenderText)
