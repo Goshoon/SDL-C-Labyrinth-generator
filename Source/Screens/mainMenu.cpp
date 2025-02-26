@@ -32,7 +32,7 @@ void MainMenu::Update()
         currentScreen = std::make_unique<sceneExample>();
 
     if (ImGui::Button("Exit", ImVec2(200, 40)))
-        app->done = true;
+        Application::GetInstance().done = true;
 
     ImGui::PopStyleColor(3);
     ImGui::PopStyleVar(2);
@@ -45,5 +45,5 @@ void MainMenu::Render()
 {
     SDL_Color backgroundColor = { 0, 0, 100, 255 };
     SDL_Rect background = { 0, 0, 1920, 1080 };
-    app->DrawRectangle(background.x, background.y, background.w, background.h, backgroundColor);
+    Application::GetInstance().DrawRectangle(background.x, background.y, background.w, background.h, backgroundColor);
 }

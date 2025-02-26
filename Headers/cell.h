@@ -8,8 +8,6 @@
 #include <memory>
 #include <array>
 
-extern std::unique_ptr<Application> app;
-
 class Cell
 {
 public:

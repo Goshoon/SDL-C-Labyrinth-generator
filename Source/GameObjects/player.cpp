@@ -3,7 +3,7 @@
 Player::Player() // Contructor por defecto
 	:Entity()
 {
-	spritesheet = app->GetTexture("Player");
+	spritesheet = Application::GetInstance().GetTexture("Player");
 	if (spritesheet == nullptr)
         std::cerr << "Failed to load player texture!" << std::endl;
 
@@ -25,7 +25,7 @@ Player::Player() // Contructor por defecto
 Player::Player(int x, int y) // Constructor a posicion
 	:Entity(x, y)
 {
-	spritesheet = app->GetTexture("Player");
+	spritesheet = Application::GetInstance().GetTexture("Player");
 	if (spritesheet == nullptr) {
         std::cerr << "Failed to load player texture!" << std::endl;
     }
@@ -47,6 +47,7 @@ Player::Player(int x, int y) // Constructor a posicion
 
 void Player::Update(MazeGenerator& maze)
 {
+	Application& app = Application::GetInstance();
 	LoockOnLevel();
 
 	/* Actualizar celda actual del jugador */
@@ -55,12 +56,12 @@ void Player::Update(MazeGenerator& maze)
 	cell = &maze.cellMatrix[x][y];
 
 	/* Dirección de jugador */
-	horizontalMove = (app->mover_derecha ? 1 : 0) - (app->mover_izquierda ? 1 : 0);
-	verticalMove = (app->mover_abajo ? 1 : 0) - (app->mover_arriba ? 1 : 0);
+	horizontalMove = (app.mover_derecha ? 1 : 0) - (app.mover_izquierda ? 1 : 0);
+	verticalMove = (app.mover_abajo ? 1 : 0) - (app.mover_arriba ? 1 : 0);
 
 	/* Velocidad de movimiento */
-	horizontalSpeed = (app->dash * runSpeed + moveSpeed) * horizontalMove;
-	verticalSpeed = (app->dash * runSpeed + moveSpeed) * verticalMove;
+	horizontalSpeed = (app.dash * runSpeed + moveSpeed) * horizontalMove;
+	verticalSpeed = (app.dash * runSpeed + moveSpeed) * verticalMove;
 
 
 	/* Crear área de colisión (hitbox) para revisar colisión en el eje horizontal */
@@ -102,14 +103,14 @@ void Player::Update(MazeGenerator& maze)
 		}
 	}
 
-	if (app->mover_derecha)
-		angle = 0.0 + (45 * app->mover_arriba) - (45 * app->mover_abajo);
-	if (app->mover_izquierda)
-		angle = 180.0 + (45 * app->mover_arriba) - (45 * app->mover_abajo);
-	if (app->mover_abajo)
-		angle = 90 - (45 * app->mover_derecha) + (45 * app->mover_izquierda);
-	if (app->mover_arriba)
-		angle = 270 + (45 * app->mover_derecha) - (45 * app->mover_izquierda);
+	if (app.mover_derecha)
+		angle = 0.0 + (45 * app.mover_arriba) - (45 * app.mover_abajo);
+	if (app.mover_izquierda)
+		angle = 180.0 + (45 * app.mover_arriba) - (45 * app.mover_abajo);
+	if (app.mover_abajo)
+		angle = 90 - (45 * app.mover_derecha) + (45 * app.mover_izquierda);
+	if (app.mover_arriba)
+		angle = 270 + (45 * app.mover_derecha) - (45 * app.mover_izquierda);
 
 	if (verticalMove != 0 || horizontalMove != 0)
 		Animate();
@@ -120,7 +121,7 @@ void Player::Update(MazeGenerator& maze)
 
 void Player::Render(Camera& camera)
 {
-	app->RenderEntity(camera, *this);
+	Application::GetInstance().RenderEntity(camera, *this);
 }
 
 void Player::LoockOnLevel(){

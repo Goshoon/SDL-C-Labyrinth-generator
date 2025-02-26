@@ -37,8 +37,8 @@ void Contreras::Render(Camera& camera) // Posicion en pantalla = posicion + posi
 {
 	SDL_Color entityColor = { 255, 0, 0, 255 }; 
 	SDL_Color entityShadow = { 255, 0, 0, 100 };
-	app->DrawRectangle(camera, position.x+4, position.y+4, position.w, position.h, entityShadow);
-	app->DrawRectangle(camera, position.x, position.y, position.w, position.h, entityColor);
+	Application::GetInstance().DrawRectangle(camera, position.x+4, position.y+4, position.w, position.h, entityShadow);
+	Application::GetInstance().DrawRectangle(camera, position.x, position.y, position.w, position.h, entityColor);
 }
 
 void Contreras::Movement()

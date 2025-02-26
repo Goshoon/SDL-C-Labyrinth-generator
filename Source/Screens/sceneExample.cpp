@@ -13,22 +13,23 @@ sceneExample::~sceneExample()
 
 void sceneExample::Update()
 {
+    Application& app = Application::GetInstance();
     player->Update(*maze);
     contreras->localizatePlayer(*player, *maze);
     contreras->Chase(player.get());
     contreras->Update();
 
-    if (app->mbLeft && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow))
+    if (app.mbLeft && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow))
     {
         float multiplier = 0.05f;
         float speed = 0.1f;
 
-        previousMouseX = lerp(previousMouseX, app->mouseX, speed);
-        previousMouseY = lerp(previousMouseY, app->mouseY, speed);
-        camera->position.x -= (app->mouseX - previousMouseX) * multiplier;
-        camera->position.y -= (app->mouseY - previousMouseY) * multiplier;
+        previousMouseX = lerp(previousMouseX, app.mouseX, speed);
+        previousMouseY = lerp(previousMouseY, app.mouseY, speed);
+        camera->position.x -= (app.mouseX - previousMouseX) * multiplier;
+        camera->position.y -= (app.mouseY - previousMouseY) * multiplier;
     }
-    else if ( app->mover_abajo || app->mover_arriba || app->mover_derecha || app->mover_izquierda )
+    else if ( app.mover_abajo || app.mover_arriba || app.mover_derecha || app.mover_izquierda )
     {
         float multiplier = 0.05f;
 
@@ -38,7 +39,7 @@ void sceneExample::Update()
         int x_target = 0;
         int y_target = 0;
 
-        SDL_GetWindowSize(app->window, &size_width, &size_heigth);
+        SDL_GetWindowSize(app.window, &size_width, &size_heigth);
 
         x_target = (player->position.x - (size_width / 2));
         y_target = (player->position.y - (size_heigth / 2));
@@ -57,8 +58,8 @@ void sceneExample::Update()
     }
     else
     {
-        previousMouseX = app->mouseX;
-        previousMouseY = app->mouseY;
+        previousMouseX = app.mouseX;
+        previousMouseY = app.mouseY;
     }
 
     camera->Update();
@@ -86,7 +87,7 @@ void sceneExample::Update()
         ImGui::Separator();
 
         if (ImGui::MenuItem("Exit"))
-            app->done = true;
+            app.done = true;
 
         ImGui::EndMenu();
     }
@@ -95,7 +96,7 @@ void sceneExample::Update()
 
 void sceneExample::Render()
 {
-    app->CalculateZoom(*camera);
+    Application::GetInstance().CalculateZoom(*camera);
     
 	for (int i = 0; i < MATRIX_DIMENSION; ++i)
     {

@@ -14,8 +14,6 @@
 #include <algorithm>
 #include <iostream>
 
-extern std::unique_ptr<Application> app;
-
 class Player : public Entity
 {
 

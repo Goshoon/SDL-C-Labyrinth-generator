@@ -20,8 +20,12 @@ extern TTF_Font* font;
 class Application
 {
 public:
-	Application();
-	~Application();
+	static Application& GetInstance()
+	{
+        static Application instance;
+        return instance;
+    }
+
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
@@ -54,6 +58,12 @@ public:
 	void RenderText(const char* toRenderText);
 	void CalculateZoom(Camera& camera);
 private:
+	Application();
+	~Application();
+
+	Application(const Application&) = delete;
+    Application& operator=(const Application&) = delete;
+
 	void InputReleased(SDL_Event* event);
 	void InputPressed(SDL_Event* event);
 };

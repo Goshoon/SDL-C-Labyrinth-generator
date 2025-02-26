@@ -12,11 +12,8 @@
 #include <cstdlib>
 #include <algorithm>
 
-extern std::unique_ptr<Application> app;
-
 class Contreras
 {
-
 public:
 	Contreras();
 	Contreras(int x, int y);

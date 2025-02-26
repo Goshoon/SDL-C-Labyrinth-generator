@@ -40,13 +40,15 @@ Cell::~Cell()
 
 void Cell::Render(Camera& camera)
 {
+	Application& app = Application::GetInstance();
+	
 	SDL_Color outlineColor = { 0, 0, 0, 255 };
 	SDL_Color color = { 255, 255, 255, 255 };
 	//SDL_Color shadow = { 255, 255, 255, 100 };
-	app->DrawRectangle(camera, position.x, position.y, position.w, position.h, color);
+	app.DrawRectangle(camera, position.x, position.y, position.w, position.h, color);
 	
-	app->DrawRectangle(camera, top.x, top.y, top.w, top.h, outlineColor);
-	app->DrawRectangle(camera, bottom.x, bottom.y, bottom.w, bottom.h, outlineColor);
-	app->DrawRectangle(camera, left.x, left.y, left.w, left.h, outlineColor);
-	app->DrawRectangle(camera, right.x, right.y, right.w, right.h, outlineColor);
+	app.DrawRectangle(camera, top.x, top.y, top.w, top.h, outlineColor);
+	app.DrawRectangle(camera, bottom.x, bottom.y, bottom.w, bottom.h, outlineColor);
+	app.DrawRectangle(camera, left.x, left.y, left.w, left.h, outlineColor);
+	app.DrawRectangle(camera, right.x, right.y, right.w, right.h, outlineColor);
 }
