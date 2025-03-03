@@ -12,6 +12,11 @@ Cell::Cell()
 	position.y = 0;
 	position.w = CELL_WIDTH;
 	position.h = CELL_HEIGHT;
+
+	walls[0] = &top;
+	walls[1] = &bottom;
+	walls[2] = &left;
+	walls[3] = &right;
 }
 
 Cell::Cell(int x, int y)
@@ -31,6 +36,11 @@ Cell::Cell(int x, int y)
 	bottom = { x, (y + CELL_HEIGHT) - CELL_OUTLINE, CELL_WIDTH, CELL_OUTLINE };
 	left = { x, y, CELL_OUTLINE, CELL_HEIGHT };
 	right = { (x + CELL_WIDTH) - CELL_OUTLINE, y, CELL_OUTLINE, CELL_HEIGHT };
+
+	walls[0] = &top;
+	walls[1] = &bottom;
+	walls[2] = &left;
+	walls[3] = &right;
 }
 
 Cell::~Cell()

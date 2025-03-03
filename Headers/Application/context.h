@@ -10,8 +10,6 @@
 
 #include "application.h"
 
-extern TTF_Font* font;
-
 #ifndef CONTEXT_H
 #define CONTEXT_H
 

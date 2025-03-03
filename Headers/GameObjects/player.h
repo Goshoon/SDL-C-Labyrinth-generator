@@ -25,6 +25,7 @@ public:
 	void Render(Camera& camera);
 private:
 	Cell* cell;
+	void SetAngle();
 	void LoockOnLevel();
 	int horizontalMove, verticalMove;
 	int horizontalSpeed, verticalSpeed, moveSpeed, runSpeed;

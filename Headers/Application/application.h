@@ -15,8 +15,6 @@
 #include "imgui_impl_sdl2.h"
 #include "imgui_impl_sdlrenderer2.h"
 
-extern TTF_Font* font;
-
 class Application
 {
 public:

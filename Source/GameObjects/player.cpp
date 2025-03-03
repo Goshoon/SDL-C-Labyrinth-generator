@@ -49,6 +49,7 @@ void Player::Update(MazeGenerator& maze)
 {
 	Application& app = Application::GetInstance();
 	LoockOnLevel();
+	SetAngle();
 
 	/* Actualizar celda actual del jugador */
 	int x = position.x / CELL_WIDTH;
@@ -103,15 +104,6 @@ void Player::Update(MazeGenerator& maze)
 		}
 	}
 
-	if (app.mover_derecha)
-		angle = 0.0 + (45 * app.mover_arriba) - (45 * app.mover_abajo);
-	if (app.mover_izquierda)
-		angle = 180.0 + (45 * app.mover_arriba) - (45 * app.mover_abajo);
-	if (app.mover_abajo)
-		angle = 90 - (45 * app.mover_derecha) + (45 * app.mover_izquierda);
-	if (app.mover_arriba)
-		angle = 270 + (45 * app.mover_derecha) - (45 * app.mover_izquierda);
-
 	if (verticalMove != 0 || horizontalMove != 0)
 		Animate();
 
@@ -131,4 +123,18 @@ void Player::LoockOnLevel(){
 
 	position.x = std::clamp((position.x), 0, relative_position_x);
 	position.y = std::clamp((position.y), 0, relative_position_y);
+}
+
+void Player::SetAngle()
+{
+	Application& app = Application::GetInstance();
+
+	if (app.mover_derecha)
+		angle = 0.0 + (45 * app.mover_arriba) - (45 * app.mover_abajo);
+	if (app.mover_izquierda)
+		angle = 180.0 + (45 * app.mover_arriba) - (45 * app.mover_abajo);
+	if (app.mover_abajo)
+		angle = 90 - (45 * app.mover_derecha) + (45 * app.mover_izquierda);
+	if (app.mover_arriba)
+		angle = 270 + (45 * app.mover_derecha) - (45 * app.mover_izquierda);
 }
