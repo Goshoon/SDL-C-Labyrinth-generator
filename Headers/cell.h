@@ -6,7 +6,7 @@
 #include "SDL.h"
 
 #include <memory>
-#include <array>
+#include <vector>
 
 class Cell
 {
@@ -15,11 +15,12 @@ public:
 	Cell(int x, int y);
 	~Cell();
 
-	SDL_Rect position, top, bottom, left, right;
-	std::array<SDL_Rect*, 4> walls;
+	SDL_Rect position;
+	std::shared_ptr<SDL_Rect> top, bottom, left, right;
+	std::vector<std::shared_ptr<SDL_Rect>> walls;
+	//std::vector<SDL_Rect*> walls;
 	
 	bool visited = false;
-	
 	bool upOpen = false;
 	bool downOpen = false;
 	bool leftOpen = false;

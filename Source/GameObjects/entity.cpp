@@ -12,8 +12,6 @@ Entity::Entity()
 	sprite.h = 32;
 	frame = 0;
 	maxframes = 0;
-	//offset.x = 0;
-	//offset.y = 0;
 	angle = 0.0;
 	flip = SDL_FLIP_NONE;
 	
@@ -32,8 +30,6 @@ Entity::Entity(int x, int y)
 	sprite.h = 32;
 	frame = 0;
 	maxframes = 0;
-	//offset.x = 0;
-	//offset.y = 0;
 	angle = 0.0;
 	flip = SDL_FLIP_NONE;
 

@@ -16,8 +16,8 @@ void MainMenu::Update()
     ImGuiIO& io = ImGui::GetIO();
     ImGui::SetNextWindowSize(ImVec2(220, 200));
     ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x / 2 - 110, io.DisplaySize.y / 2 - 100));
-
-    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(10, 10)); 
+    
+    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(10, 10));
     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(10, 10));
     
     /* Ventana principal del menu inicial */

@@ -18,10 +18,7 @@ ContrerasPrime::ContrerasPrime(int x, int y) // Constructor a posicion
 
 void ContrerasPrime::Update()
 {
-
-	// Movement();
-	clampsito();
-
+	LoockOnLevel();
 }
 
 void ContrerasPrime::LoockOnLevel(){

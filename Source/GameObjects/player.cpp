@@ -26,9 +26,8 @@ Player::Player(int x, int y) // Constructor a posicion
 	:Entity(x, y)
 {
 	spritesheet = Application::GetInstance().GetTexture("Player");
-	if (spritesheet == nullptr) {
+	if (spritesheet == nullptr)
         std::cerr << "Failed to load player texture!" << std::endl;
-    }
 
     position.w = 64;
     position.h = 64;
@@ -52,8 +51,8 @@ void Player::Update(MazeGenerator& maze)
 	SetAngle();
 
 	/* Actualizar celda actual del jugador */
-	int x = position.x / CELL_WIDTH;
-	int y = position.y / CELL_WIDTH;
+	unsigned int x = position.x / CELL_WIDTH;
+	unsigned int y = position.y / CELL_WIDTH;
 	cell = &maze.cellMatrix[x][y];
 
 	/* Dirección de jugador */
@@ -65,34 +64,30 @@ void Player::Update(MazeGenerator& maze)
 	verticalSpeed = (app.dash * runSpeed + moveSpeed) * verticalMove;
 
 
-	/* Crear área de colisión (hitbox) para revisar colisión en el eje horizontal */
-	SDL_Rect horizontalCheck = position;
-	horizontalCheck.x += horizontalSpeed;
-
-	if (horizontalMove != 0)  // Revisar colision si hay movimiento
+	for(int i = 0; i < cell->walls.size(); i++)
 	{
-		if ((horizontalMove < 0 && Collide(horizontalCheck, cell->left)) || 	// Revisar collision en paredes horizontales
-		    (horizontalMove > 0 && Collide(horizontalCheck, cell->right)))
+		/* Crear área de colisión (hitbox) para revisar colisión en el eje horizontal */
+		SDL_Rect horizontalCheck = position;
+		horizontalCheck.x += horizontalSpeed;
+
+		if (horizontalMove < 0 && Collide(horizontalCheck, *cell->walls.at(i))) 	// Revisar collision en paredes horizontales
 		{
 			/*
 			horizontalCheck.x -= horizontalSpeed;
 			horizontalCheck.x += horizontalMove;
 			while (!Collide(horizontalCheck, (horizontalMove < 0) ? cell->left : cell->right)) // Acercar a pared en (1 o -1) unidades
-				position.x += horizontalMove;
+			position.x += horizontalMove;
 			*/
+			std::cout << "collide h \n";
 			horizontalSpeed = 0;
 		}
-	}
-	
 
-	/* Crear área de colisión (hitbox) para revisar colisión en el eje vertical */
-	SDL_Rect verticalCheck = position;
-	verticalCheck.y += verticalSpeed;
 
-	if (verticalMove != 0) // Revisar colision si hay movimiento
-	{
-		if ((verticalMove < 0 && Collide(verticalCheck, cell->top)) || 			// Revisar collision en paredes verticales
-		    (verticalMove > 0 && Collide(verticalCheck, cell->bottom))) 
+		/* Crear área de colisión (hitbox) para revisar colisión en el eje vertical */
+		SDL_Rect verticalCheck = position;
+		verticalCheck.y += verticalSpeed;
+
+		if (verticalMove < 0 && Collide(verticalCheck, *cell->walls.at(i))) 			// Revisar collision en paredes verticales
 		{
 			/*
 			verticalCheck.y -= verticalSpeed;
@@ -100,6 +95,7 @@ void Player::Update(MazeGenerator& maze)
 			while (!Collide(verticalCheck, (verticalMove < 0) ? cell->top : cell->bottom)) // Acercar a pared en (1 o -1) unidades
 				position.y += verticalMove;
 			*/
+			std::cout << "collide v \n";
 			verticalSpeed = 0;
 		}
 	}
