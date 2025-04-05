@@ -5,8 +5,6 @@
         As i mentioned before; I personally run my batch script including only the folders of dependencies and Headers, then it is all linked to SDL2 and ImGui which are inside of dependencies folder.
 
 <h2>Credits</h2>
-        - **SDL2**: The Simple DirectMedia Layer (SDL) is used for handling graphics, events, and input. SDL is licensed under the [Zlib License](https://www.libsdl.org/license.php).
-
-        - **Dear ImGui**: Dear ImGui is used for creating the GUI elements in the project. It is a bloat-free graphical user interface library primarily used for debugging tools and applications. ImGui is licensed under the [MIT License](https://github.com/ocornut/imgui/blob/master/LICENSE.txt).
-
-        - **C++ Standard Library**: The C++ Standard Library is used for many common operations like memory management, data structures, and more.
+        <ul> - SDL2: The Simple DirectMedia Layer (SDL) is used for handling graphics, events, and input. SDL is licensed under the [Zlib License](https://www.libsdl.org/license.php).</ul>
+        <ul> - Dear ImGui: Dear ImGui is used for creating the GUI elements in the project. It is a bloat-free graphical user interface library primarily used for debugging tools and applications. ImGui is licensed under the [MIT License](https://github.com/ocornut/imgui/blob/master/LICENSE.txt). </ul>
+        <ul> - C++ Standard Library: The C++ Standard Library is used for many common operations like memory management, data structures, and more. </ul>
