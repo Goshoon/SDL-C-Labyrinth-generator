@@ -1,5 +1,6 @@
 <h1><b>Labyrinth Generator SDL+CPP</b></h1>
         Labyrinth Generator is exactly what it sounds like, a perfect maze generating system that allows users to just created them randonmly with the press of a button. it is important to note that i work primarily on Windows and run a batch script for compilation on g++ for most compatibility, but everything works properly on Linux.
+        <img src="Screenshots/maze.png"> </img>
         ![Labyrinth Screenshot](Screenshots/maze.png)
         ![Description of image](Screenshots/generate.png)
 
