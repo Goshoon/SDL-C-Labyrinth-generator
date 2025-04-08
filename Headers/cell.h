@@ -3,7 +3,7 @@
 #include "camera.h"
 #include "application.h"
 
-#include "SDL.h"
+#include <SDL2/SDL.h>
 
 #include <memory>
 #include <vector>

@@ -3,8 +3,8 @@
 #include <memory>
 #include "application.h"
 
-#include "SDL.h"
-#include "SDL_Image.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_Image.h>
 
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"

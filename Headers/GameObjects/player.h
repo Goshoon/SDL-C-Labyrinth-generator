@@ -8,7 +8,7 @@
 #include "entity.h"
 #include "math.h"
 
-#include "SDL.h"
+#include <SDL2/SDL.h>
 
 #include <memory>
 #include <algorithm>

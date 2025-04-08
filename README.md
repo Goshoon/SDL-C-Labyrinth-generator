@@ -1,5 +1,5 @@
 <h1><b>Labyrinth Generator SDL+CPP</b></h1>
-        Labyrinth Generator is exactly what it sounds like, a perfect maze generating system that allows users to create a maze randonmly with the press of a button; It is important to note that i work primarily on Windows and run a batch script for compilation on g++ for most compatibility, but everything works properly on Linux.
+        Labyrinth Generator is exactly what it sounds like - a perfect maze generating system that allows users to create a maze randonmly with the press of a button; It is important to note that i work primarily on Windows and run a batch script for compilation on g++ for most compatibility. However it is fully compatible with Linux.
 
 <b><h2> Features </h2></b>
         <ul>
@@ -9,7 +9,7 @@
                 <li> Cross-platform support (Windows & Linux) </li>
         </ul>
 
-<h2><b> usage </b></h2>
+<h2><b> Usage </b></h2>
         <ul>
                 <li> Use mouse to move camera independly </li>
                 <li> WASD keys move the character around </li>
@@ -33,3 +33,6 @@
                 <li> Moises Gonzalez </li>
                 <li> Emmanuel Lara </li>
         </ul>
+
+<h2> <b> Lincense </b> </h2>
+        This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
