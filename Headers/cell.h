@@ -16,9 +16,8 @@ public:
 	~Cell();
 
 	SDL_Rect position;
-	std::shared_ptr<SDL_Rect> top, bottom, left, right;
+	SDL_Rect top, bottom, left, right;
 	std::vector<std::shared_ptr<SDL_Rect>> walls;
-	//std::vector<SDL_Rect*> walls;
 	
 	bool visited = false;
 	bool upOpen = false;

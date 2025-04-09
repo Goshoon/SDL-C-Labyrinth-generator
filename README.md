@@ -34,5 +34,5 @@
                 <li> Emmanuel Lara </li>
         </ul>
 
-<h2> <b> Lincense </b> </h2>
+<h2> <b> License </b> </h2>
         This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

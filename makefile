@@ -2,8 +2,8 @@
 
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++17 -I./Headers -I./Dependencies/SDL2/include -I./Dependencies/ImGui
-LDFLAGS = -L./Dependencies/SDL2/lib -static-libgcc -static-libstdc++ -lmingw32 -Wpedantic -Wmaybe-uninitialized -DSDL2_STATIC -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
+CXXFLAGS = -std=c++17 -I./Headers
+LDFLAGS = -static-libgcc -static-libstdc++ -lmingw32 -Wpedantic -Wmaybe-uninitialized -DSDL2_STATIC -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
 BIN_DIR = ./Bin
 SRC_DIR = ./Source
 OBJ_DIR = ./Obj
