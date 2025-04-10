@@ -3,7 +3,7 @@
 #include "define.h"
 #include "camera.h"
 #include "cell.h"
-#include "MazeGenerator.h"
+#include "mazeGenerator.h"
 #include "collision.h"
 #include "entity.h"
 #include "math.h"
