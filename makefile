@@ -24,8 +24,9 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 # Compile each source file to object file
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
-	$(CXX) -c $< -o $@ $(CXXFLAGS) $(INCLUDES) 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) -c $< -o $@ $(CXXFLAGS) $(INCLUDES)
 
 # Link object files into the final executable
 $(BIN_DIR)/run.exe: $(OBJECTS)
@@ -45,3 +46,5 @@ run: $(BIN_DIR)/run.exe copy_resources
 	@$(BIN_DIR)/run.exe
 
 .PHONY: all clean run copy_resources
+
+
