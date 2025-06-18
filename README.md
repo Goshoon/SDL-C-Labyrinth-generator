@@ -23,16 +23,17 @@
         As i mentioned before; I personally run my batch script including only the folders of dependencies and Headers, then it is all linked to SDL2 and ImGui which are inside of dependencies folder. Then i place all the dlls on the compilation folder. A Mafile exist that should allow you to build the application on both windows and linux
 
 <h2>Credits</h2>
-        <ul>
-                <li> SDL2: The Simple DirectMedia Layer (SDL) is used for handling graphics, events, and input. SDL is licensed under the [Zlib License](https://www.libsdl.org/license.php). </li>
-                <li> Dear ImGui: Dear ImGui is used for creating the GUI elements in the project. It is a bloat-free graphical user interface library primarily used for debugging tools and applications. ImGui is licensed under the [MIT License](https://github.com/ocornut/imgui/blob/master/LICENSE.txt). </li>
-                <li> C++ Standard Library: The C++ Standard Library is used for many common operations like memory management, data structures, and more. </li>
-        </ul>
-        <h3> Developers </h3>
-        <ul>
-                <li> Moises Gonzalez </li>
-                <li> Emmanuel Lara </li>
-        </ul>
+
+* SDL2: The Simple DirectMedia Layer (SDL) is used for handling graphics, events, and input. SDL is licensed under the [Zlib License](https://www.libsdl.org/license.php)
+* Dear ImGui: Dear ImGui is used for creating the GUI elements in the project. It is a bloat-free graphical user interface library primarily used for debugging tools and applications. ImGui is licensed under the [MIT License](https://github.com/ocornut/imgui/blob/master/LICENSE.txt).
+* C++ Standard Library: The C++ Standard Library is used for many common operations like memory management, data structures, and more. 
+
+
+<h3> Developers </h3>
+
+* Moises Gonzalez
+* Emmanuel Lara
 
 <h2> <b> License </b> </h2>
-        This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
